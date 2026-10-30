@@ -369,6 +369,34 @@ footer.site a:hover{transform:translateX(6px);color:#fff}
 .iconbtn:hover{box-shadow:0 5px 14px rgba(0,0,0,.15)}
 @media (prefers-reduced-motion: reduce){.ripple,.burst-bit{display:none!important}}
 
+
+/* ===== STORE LOOK FIX (v3.6) - real store framing, no sketchy outlines on photos ===== */
+.card{border:1px solid rgba(23,23,23,.10);box-shadow:0 2px 10px rgba(23,23,23,.05)}
+.card:hover{box-shadow:0 14px 34px rgba(23,23,23,.13)}
+.cat-tile{border:1px solid rgba(23,23,23,.10);box-shadow:0 2px 10px rgba(23,23,23,.05)}
+.galmain{border:none;box-shadow:0 18px 44px rgba(23,23,23,.16);background:#f7f3ec}
+.floaty{border:none!important;box-shadow:0 18px 44px rgba(23,23,23,.16)}
+.pimg{background:#f7f3ec}
+.quick{position:absolute;left:10px;right:10px;bottom:10px;top:auto;margin:0;opacity:0;transform:translateY(8px)}
+@media (hover:none), (pointer:coarse){.card .quick{display:none}}
+#quickModal .box{border:none;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+#chatPanel{border:none;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.fly{border:none;box-shadow:0 10px 26px rgba(0,0,0,.22)}
+#recentStrip{border:1px solid rgba(23,23,23,.10);box-shadow:0 10px 26px rgba(0,0,0,.14)}
+.previewText{font-size:clamp(18px,2.6vw,27px);font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.55),0 4px 22px rgba(0,0,0,.35);letter-spacing:.4px}
+.galthumbs button{border:1px solid rgba(23,23,23,.14)}
+.galthumbs button.active{border-color:var(--accent)}
+@media (hover:none), (pointer:coarse){
+.card:hover{transform:none}
+.card:hover:before{transform:scaleX(0)}
+.card:hover .pimg img.ph{transform:none}
+.card:hover .pimg img.art2{opacity:0}
+.card:hover .price{transform:none;color:inherit}
+.btn:hover{transform:none;box-shadow:none}
+.chip:hover{transform:none;box-shadow:none}
+.cat-tile:hover{transform:none}
+.payopt:hover,.swatch:hover{transform:none;box-shadow:none}
+}
 @media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 .btn{clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)} .card{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)} h2.sec{font-family:Arial,sans-serif;font-weight:900}
