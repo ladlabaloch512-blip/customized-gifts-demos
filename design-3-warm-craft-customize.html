@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><title>Customize Studio - Design 3 - Warm Craft Cutouts | Customized Gifts Demo</title>
+<style>:root{--primary:#9c4a1f;--accent:#2f5d50;--bg:#fdf6ec;--headerbg:#fdf6ec;--ink:#191919;--font:'Trebuchet MS','Segoe UI',Verdana,sans-serif;--radius:12px}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.55;color-scheme:only light;overflow-x:hidden}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit}
+#progressBar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:220}
+#preloader{position:fixed;inset:0;background:var(--ink);color:#fff;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;z-index:300;transition:opacity .45s}
+#preloader.done{opacity:0;pointer-events:none}
+#preloader .plogo{font-size:30px;font-weight:900;letter-spacing:2px}
+#preloader .plogo path{stroke:#fff;stroke-width:2;fill:none;stroke-dasharray:300;stroke-dashoffset:300;animation:draw 1s ease forwards}
+#preloader .pbar{width:190px;height:4px;background:rgba(255,255,255,.25);border-radius:var(--radius)}
+#preloader .pbar i{display:block;height:100%;background:var(--accent);width:0;animation:load .9s ease forwards;border-radius:var(--radius)}
+@keyframes load{to{width:100%}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.09)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes wordIn{from{opacity:0;transform:translateY(14px) rotate(2deg)}to{opacity:1;transform:none}}
+@keyframes confettiFall{0%{transform:translateY(-10vh) rotate(0)}100%{transform:translateY(105vh) rotate(640deg)}}
+body{animation:pageIn .38s ease}
+@keyframes pageIn{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:none}}
+body.leaving{opacity:0;transform:translateY(-8px);transition:all .22s ease}
+.marquee{background:var(--primary);color:#fff;overflow:hidden;white-space:nowrap;padding:9px 0;font-size:13px;font-weight:700;letter-spacing:1px}
+.marquee-track{display:inline-block;animation:mq 22s linear infinite}
+@media (hover:hover) and (pointer:fine){.marquee:hover .marquee-track{animation-play-state:paused}}
+header.site{position:sticky;top:0;z-index:90;background:var(--headerbg);border-bottom:2px solid var(--ink);transition:transform .3s, box-shadow .3s}
+header.site.shrunk{box-shadow:0 6px 24px rgba(0,0,0,.15)}
+header.site.hideup{transform:translateY(-100%)}
+.hwrap{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:13px 20px}
+.logo{font-weight:900;font-size:24px;letter-spacing:.5px;white-space:nowrap;text-decoration:none}
+.logo b{color:var(--accent)}
+nav.main{display:flex;gap:4px;margin-left:auto}
+nav.main a{text-decoration:none;font-weight:700;font-size:15px;position:relative;padding:9px 11px;border-radius:var(--radius)}
+nav.main a:after{content:"";position:absolute;left:11px;bottom:4px;height:2px;width:0;background:var(--accent);transition:width .25s}
+nav.main a:hover:after,nav.main a.act:after{width:calc(100% - 22px)}
+nav.main a.act{color:var(--accent)}
+.hicons{display:flex;gap:8px;align-items:center;margin-left:6px}
+.iconbtn{position:relative;border:2px solid var(--ink);width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--bg);color:var(--ink);border-radius:var(--radius);transition:transform .15s}
+.iconbtn:active{transform:scale(.94)}
+.badge{position:absolute;top:-8px;right:-8px;background:var(--accent);color:#fff;font-size:12px;font-weight:800;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;padding:0 5px;border-radius:calc(var(--radius) * .6)}
+.badge.pop{animation:pop .35s ease}
+#hamburger{display:none}
+#hamburger .lines{display:block;width:20px;height:14px;position:relative}
+#hamburger .lines i{position:absolute;left:0;width:100%;height:2.5px;background:currentColor;transition:all .3s}
+#hamburger .lines i:nth-child(1){top:0}#hamburger .lines i:nth-child(2){top:6px}#hamburger .lines i:nth-child(3){top:12px}
+#hamburger.x .lines i:nth-child(1){top:6px;transform:rotate(45deg)}
+#hamburger.x .lines i:nth-child(2){opacity:0}
+#hamburger.x .lines i:nth-child(3){top:6px;transform:rotate(-45deg)}
+.switcher{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 20px;max-width:1280px;margin:0 auto;background:var(--bg);color:var(--ink)}
+.switcher b{font-size:13px;letter-spacing:1px}
+.swatch{border:2px solid var(--ink);padding:8px 14px;font-weight:700;font-size:13px;background:#fff;min-height:40px;border-radius:var(--radius)}
+.swatch.active{background:var(--ink);color:#fff}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 20px 70px}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--primary);color:#fff;border:2px solid var(--primary);padding:14px 26px;font-weight:800;font-size:16px;text-decoration:none;min-height:52px;border-radius:var(--radius);transition:color .25s,border-color .25s;z-index:0}
+.btn:before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:-1}
+.btn:hover:before{transform:scaleX(1)}
+.btn:active{transform:scale(.97)}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(5px)}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.alt:hover{color:#fff}
+.btn.block{width:100%}
+.btn:disabled{opacity:.6}
+.chip{border:2px solid var(--ink);background:#fff;padding:10px 18px;font-weight:700;min-height:44px;border-radius:var(--radius);transition:all .18s}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary);animation:pop .25s}
+.chip:active{transform:scale(.95)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{border:2px solid var(--ink);background:#fff;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;transition:transform .25s,box-shadow .25s;transform-style:preserve-3d}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(0,0,0,.14)}
+.card .pimg{position:relative;overflow:hidden;aspect-ratio:1/.82;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.card .pimg .art1,.card .pimg .art2{width:62%;height:82%;transition:all .45s;display:flex;align-items:center;justify-content:center}
+.card .pimg .art2{position:absolute;inset:0;margin:auto;opacity:0;transform:scale(.92)}
+.card:hover .pimg .art1{opacity:0;transform:scale(1.12)}
+.card:hover .pimg .art2{opacity:1;transform:scale(1)}
+.card .cbadge{position:absolute;top:10px;left:10px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;padding:5px 9px;letter-spacing:.5px;animation:pop .4s ease;border-radius:calc(var(--radius) * .6);z-index:2}
+.card .quick{position:absolute;left:10px;right:10px;bottom:10px;background:var(--ink);color:#fff;border:none;padding:11px;font-weight:700;opacity:0;transform:translateY(8px);transition:all .25s;min-height:44px;border-radius:var(--radius);z-index:2}
+.card:hover .quick{opacity:1;transform:none}
+.card .cbody{padding:16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card h3{font-size:17px;line-height:1.3}
+.cat{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--accent);text-transform:uppercase}
+.price{font-size:19px;font-weight:900}
+.price s{color:#8a8a8a;font-weight:500;font-size:15px;margin-left:7px}
+.save{color:var(--accent);font-weight:800;font-size:13px}
+.card .add{margin-top:auto;background:var(--primary);color:#fff;border:none;padding:13px;font-weight:800;font-size:15px;min-height:48px;border-radius:calc(var(--radius) * .7)}
+.card .add:active{transform:scale(.97)}
+.wishbtn{align-self:flex-start;background:none;border:none;font-size:21px;padding:2px;line-height:1}
+.wishbtn.on{color:var(--accent);animation:pop .35s}
+h2.sec{font-size:clamp(26px,4vw,40px);margin:8px 0 6px;line-height:1.15}
+p.sub{color:#555;max-width:660px}
+section.band{padding:42px 0}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat-tile{border:2px solid var(--ink);padding:26px 20px;background:#fff;cursor:pointer;text-align:left;transition:all .25s;border-radius:var(--radius)}
+.cat-tile:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
+.cat-tile svg{width:54px;height:54px}
+.cat-tile h3{font-size:20px;margin-top:10px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{border:2px solid var(--ink);padding:24px;background:#fff;border-radius:var(--radius);position:relative}
+.step .num{font-size:34px;font-weight:900;color:var(--accent)}
+.rail{display:flex;gap:20px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
+.rail .card{min-width:270px;scroll-snap-align:start}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
+.toolbar input,.toolbar select{padding:12px 14px;border:2px solid var(--ink);font-size:15px;min-height:48px;background:#fff;border-radius:var(--radius)}
+.skel{border:2px solid #ddd;background:#fff;padding:14px;border-radius:var(--radius)}
+.skel .sk{height:150px;background:#e8e8e8;animation:pulse 1s infinite;border-radius:var(--radius)}
+.skel .skl{height:14px;background:#e8e8e8;margin-top:10px;animation:pulse 1s infinite}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:120;opacity:0;pointer-events:none;transition:opacity .3s}
+.backdrop.open{opacity:1;pointer-events:auto}
+#cartDrawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,94vw);background:#fff;z-index:130;transform:translateX(105%);transition:transform .35s ease;display:flex;flex-direction:column;border-left:3px solid var(--ink)}
+#cartDrawer.open{transform:none}
+#cartDrawer header{padding:18px;border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
+#cartItems{flex:1;overflow-y:auto;padding:14px 18px;display:flex;flex-direction:column;gap:14px}
+.citem{display:flex;gap:12px;border:2px solid #e2e2e2;padding:10px;border-radius:var(--radius);transition:opacity .3s,transform .3s}
+.citem.flash{border-color:var(--accent);background:#fff8ec}
+.citem.bye{opacity:0;transform:translateX(30px)}
+.citem .thumb{width:64px;height:64px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:var(--radius)}
+.citem .thumb svg{width:80%;height:80%}
+.qty{display:inline-flex;border:2px solid var(--ink);border-radius:var(--radius);overflow:hidden}
+.qty button{width:36px;height:36px;border:none;background:#fff;font-size:18px;font-weight:800}
+.qty output{min-width:34px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.shipbar{height:10px;background:#e6e6e6;margin-top:8px;border-radius:var(--radius);overflow:hidden}
+.shipbar i{display:block;height:100%;background:var(--accent);width:0;transition:width .5s ease}
+#mobileMenu{position:fixed;top:0;left:0;height:100dvh;width:min(320px,86vw);background:#fff;color:var(--ink);z-index:130;transform:translateX(-105%);transition:transform .35s ease;padding:22px;display:flex;flex-direction:column;gap:4px;border-right:3px solid var(--ink);overflow-y:auto}
+#mobileMenu.open{transform:none}
+#mobileMenu a{font-size:18px;font-weight:800;text-decoration:none;padding:12px 4px;border-bottom:1px solid #eee}
+#mobileMenu .subm{display:none;padding-left:16px}
+#mobileMenu .subm a{font-size:16px;font-weight:600}
+#mobileMenu .has-sub.open + .subm{display:block}
+#quickModal{position:fixed;inset:0;z-index:140;display:none;align-items:center;justify-content:center;padding:18px}
+#quickModal.open{display:flex}
+#quickModal .box{background:#fff;border:3px solid var(--ink);max-width:520px;width:100%;padding:24px;animation:pop .25s ease;position:relative;z-index:2;border-radius:var(--radius)}
+.pdp{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.galmain{border:2px solid var(--ink);position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1/.86;overflow:hidden;border-radius:var(--radius)}
+.galmain .gart{display:flex;width:100%;height:100%;align-items:center;justify-content:center;transition:transform .25s}
+.galmain svg{width:60%;height:80%}
+.galmain .previewText{position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);font-weight:800;font-size:clamp(16px,2.6vw,26px);color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.65);text-align:center;max-width:80%;word-break:break-word;pointer-events:none}
+.galthumbs{display:flex;gap:10px;margin-top:12px}
+.galthumbs button{border:2px solid #ccc;width:76px;height:64px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:var(--radius)}
+.galthumbs button.active{border-color:var(--accent)}
+.galthumbs svg{width:70%;height:80%}
+.dots{display:flex;gap:7px;justify-content:center;margin-top:10px}
+.dots i{width:9px;height:9px;background:#ccc;border-radius:50%;transition:all .25s}
+.dots i.on{background:var(--accent);width:22px;border-radius:6px}
+.field{margin:16px 0;position:relative}
+.field label{display:block;font-weight:800;margin-bottom:7px;font-size:15px;transition:all .2s}
+.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:2px solid var(--ink);font-size:16px;background:#fff;min-height:50px;border-radius:var(--radius)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid var(--accent);outline-offset:1px}
+.field .okmark{position:absolute;right:12px;top:42px;color:#2e7d32;font-weight:900;display:none}
+.field.valid input{border-color:#2e7d32}
+.field.valid .okmark{display:block}
+.field.invalid input{border-color:#b23a48;animation:shake .3s}
+.swatches{display:flex;gap:10px}
+.swatches button{width:44px;height:44px;border:3px solid #ccc;border-radius:var(--radius)}
+.swatches button.active{border-color:var(--ink);transform:scale(1.1)}
+.acc{border:2px solid var(--ink);margin-top:12px;background:#fff;border-radius:var(--radius);overflow:hidden}
+.acc>button{width:100%;text-align:left;background:none;border:none;padding:15px 16px;font-weight:800;font-size:15px;display:flex;justify-content:space-between}
+.acc .abody{display:none;padding:0 16px 16px;color:#444}
+.acc.open .abody{display:block;animation:pageIn .3s}
+#stickyBar{position:fixed;left:0;right:0;bottom:0;z-index:95;background:#fff;border-top:3px solid var(--ink);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:none;gap:12px;align-items:center;transform:translateY(110%);transition:transform .3s}
+#stickyBar.show{transform:none}
+#stickyBar .btn{flex:1}
+.co-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px}
+.payopt{border:2px solid var(--ink);padding:15px;display:flex;gap:12px;align-items:center;margin-bottom:10px;background:#fff;width:100%;text-align:left;font-size:15px;border-radius:var(--radius)}
+.payopt.active{border-color:var(--accent);background:#fff8ec}
+.stepsbar{display:flex;gap:6px;margin:16px 0}
+.stepsbar i{flex:1;height:8px;background:#e2e2e2;border-radius:var(--radius);transition:background .4s}
+.stepsbar i.done{background:var(--accent)}
+.checkwrap{display:flex;justify-content:center;margin:22px 0}
+.checksvg circle{stroke:var(--accent);stroke-width:3;fill:none;stroke-dasharray:290;stroke-dashoffset:290;animation:draw .8s ease forwards}
+.checksvg path{stroke:var(--accent);stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:80;stroke-dashoffset:80;animation:draw .5s .6s ease forwards}
+.confetti{position:fixed;top:0;width:10px;height:16px;z-index:250;pointer-events:none;animation:confettiFall linear forwards}
+.tracker{display:flex;justify-content:space-between;max-width:640px;margin:30px auto;position:relative}
+.tracker:before{content:"";position:absolute;top:21px;left:8%;right:8%;height:4px;background:#e0e0e0}
+.tracker .fill{position:absolute;top:21px;left:8%;height:4px;background:var(--accent);width:0;transition:width 1.2s ease}
+.tstep{text-align:center;flex:1;position:relative;z-index:1}
+.tstep .dot{width:44px;height:44px;border-radius:50%;background:#fff;border:3px solid #ccc;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-weight:900}
+.tstep.on .dot{border-color:var(--accent);background:var(--accent);color:#fff;animation:pop .4s ease}
+.tstep small{font-weight:700;color:#555}
+#toast{position:fixed;left:50%;transform:translate(-50%,140%);bottom:88px;background:var(--ink);color:#fff;padding:14px 22px;font-weight:700;z-index:180;transition:transform .35s;max-width:92vw;text-align:center;border-radius:var(--radius)}
+#toast.show{transform:translate(-50%,0)}
+#backTop{position:fixed;right:18px;bottom:160px;width:48px;height:48px;background:var(--ink);color:#fff;border:none;font-size:20px;z-index:80;opacity:0;pointer-events:none;transition:opacity .3s;border-radius:var(--radius)}
+#backTop.show{opacity:1;pointer-events:auto}
+#chatBtn{position:fixed;right:18px;bottom:88px;width:58px;height:58px;background:var(--primary);color:#fff;border:2px solid var(--ink);z-index:85;border-radius:var(--radius);display:flex;align-items:center;justify-content:center}
+#chatBtn.pulseonce{animation:pop .5s ease 1s}
+#chatPanel{position:fixed;right:18px;bottom:156px;width:min(360px,92vw);height:440px;background:#fff;border:3px solid var(--ink);z-index:140;display:none;flex-direction:column;border-radius:var(--radius);overflow:hidden}
+#chatPanel.open{display:flex;animation:pop .25s ease}
+#chatPanel header{background:var(--primary);color:#fff;padding:14px 16px;font-weight:800;display:flex;justify-content:space-between}
+#chatMsgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px}
+.msg{max-width:82%;padding:10px 13px;font-size:14.5px;border-radius:var(--radius);animation:pageIn .3s}
+.msg.bot{background:#f0efe9;align-self:flex-start}
+.msg.me{background:var(--primary);color:#fff;align-self:flex-end}
+.typing{align-self:flex-start;background:#f0efe9;padding:12px 16px;display:none;border-radius:var(--radius)}
+.typing.show{display:block}
+.typing i{width:7px;height:7px;background:#888;border-radius:50%;display:inline-block;animation:pulse .7s infinite}
+#chatPanel footer{display:flex;border-top:2px solid var(--ink)}
+#chatPanel footer input{flex:1;border:none;padding:13px;font-size:15px}
+#chatPanel footer button{background:var(--ink);color:#fff;border:none;padding:0 18px;font-weight:800}
+footer.site{background:var(--ink);color:#e9e9e9;padding:48px 20px 30px}
+footer.site .fwrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+footer.site a{color:#e9e9e9;text-decoration:none;display:block;padding:4px 0}
+footer.site h4{color:#fff;margin-bottom:10px}
+#bottomNav{display:none}
+.fly{position:fixed;z-index:250;width:74px;height:74px;pointer-events:none;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;background:#fff;border-radius:var(--radius);transition:all .75s cubic-bezier(.5,-0.1,.3,1)}
+.fly svg{width:80%;height:80%}
+.floaty{animation:floaty 3.2s ease-in-out infinite}
+.countnum{font-size:40px;font-weight:900}
+.countdown{display:flex;gap:10px}
+.countdown div{background:var(--ink);color:#fff;padding:10px 14px;text-align:center;min-width:70px;border-radius:var(--radius)}
+.countdown b{font-size:24px;display:block}
+.hero-slider{position:relative;overflow:hidden}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;pointer-events:none}
+.hero-slide.on{opacity:1;position:relative;pointer-events:auto}
+.hero-dots{display:flex;gap:8px;margin-top:16px}
+.hero-dots button{width:34px;height:6px;border:none;background:#cfcfcf;border-radius:var(--radius)}
+.hero-dots button.on{background:var(--accent)}
+.rotword{display:inline-block;color:var(--accent);min-width:1ch}
+.typewriter:after{content:"|";animation:pulse .8s infinite;color:var(--accent)}
+.divider{display:block;width:100%;height:60px;margin:0}
+.processline{position:relative}
+.ringwrap{position:relative;width:120px;height:120px}
+.ringwrap svg{transform:rotate(-90deg)}
+.ringwrap .ringbg{stroke:#e5e5e5}
+.ringwrap .ringfg{stroke:var(--accent);stroke-dasharray:314;stroke-dashoffset:314;transition:stroke-dashoffset 1.4s ease}
+.ringwrap b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:26px}
+#searchOverlay{position:fixed;inset:0;background:#fff;z-index:150;display:none;padding:26px 20px;overflow-y:auto}
+#searchOverlay.open{display:block;animation:pageIn .3s}
+#recentStrip{position:fixed;left:14px;bottom:88px;z-index:84;background:#fff;border:2px solid var(--ink);padding:10px 12px;display:none;max-width:78vw;border-radius:var(--radius)}
+#recentStrip.show{display:block;animation:pageIn .35s}
+.tooltip{position:relative}
+.tooltip:hover:after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:12px;padding:6px 9px;white-space:nowrap;z-index:60;border-radius:calc(var(--radius) * .6)}
+.sticky-cat{position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:40;font-weight:900;letter-spacing:1px}
+@media(max-width:900px){
+ .grid{grid-template-columns:repeat(2,1fr);gap:13px}
+ .cats{grid-template-columns:repeat(2,1fr);gap:13px}
+ .steps{grid-template-columns:1fr}
+ .pdp{grid-template-columns:1fr}
+ .co-grid{grid-template-columns:1fr}
+ footer.site .fwrap{grid-template-columns:repeat(2,1fr)}
+ nav.main{display:none}
+ #hamburger{display:flex}
+ #stickyBar{display:flex}
+ #bottomNav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:96;background:#fff;border-top:2px solid var(--ink);padding:8px 4px calc(8px + env(safe-area-inset-bottom));justify-content:space-around}
+ #bottomNav button{background:none;border:none;font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:70px;min-height:48px;justify-content:center;white-space:nowrap;color:var(--ink)}
+ #bottomNav button.act{color:var(--accent)}
+ body{padding-bottom:64px}
+ footer.site{padding-bottom:100px}
+ .card .quick{opacity:1;transform:none;position:static;margin:10px}
+ .card h3{font-size:15.5px}
+ .hwrap{padding:12px 14px}
+ .logo{font-size:20px}
+ #quickModal{align-items:flex-end;padding:0}
+ #quickModal .box{max-width:100%;border-bottom:none;animation:sheetUp .3s ease}
+ @keyframes sheetUp{from{transform:translateY(60px);opacity:.4}to{transform:none;opacity:1}}
+ #toast{bottom:150px}
+ #chatPanel{bottom:150px}
+}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.step{clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%)} .cat-tile{clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)} .band{position:relative}
+.herogrid svg{width:52%;height:76%}
+@media(max-width:900px){.herogrid{grid-template-columns:1fr!important}}
+</style></head><body data-page="customize">
+<div id="progressBar"></div>
+<div id="preloader"><div class="plogo"><svg width="52" height="52" viewBox="0 0 52 52"><path d="M6 26 L26 6 L46 26 L26 46 Z"/></svg></div><div class="brandname" style="font-size:22px;font-weight:900;letter-spacing:2px">CustomNest</div><div class="pbar"><i></i></div><small>Preparing your personalized store...</small></div>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>FREE DELIVERY ABOVE RS. 5,000 &nbsp;•&nbsp; NAME CUSTOMIZATION INCLUDED &nbsp;•&nbsp; CASH ON DELIVERY &nbsp;•&nbsp; TEMPERATURE BOTTLES • KEYCHAINS • DIARIES • CUSTOMIZED PENS &nbsp;•&nbsp; </span><span>FREE DELIVERY ABOVE RS. 5,000 &nbsp;•&nbsp; NAME CUSTOMIZATION INCLUDED &nbsp;•&nbsp; CASH ON DELIVERY &nbsp;•&nbsp; TEMPERATURE BOTTLES • KEYCHAINS • DIARIES • CUSTOMIZED PENS &nbsp;•&nbsp; </span></div></div>
+<header class="site"><div class="hwrap">
+<button class="iconbtn" id="hamburger" onclick="document.getElementById('mobileMenu').classList.contains('open')?closeMenu():openMenu()" aria-label="menu"><span class="lines"><i></i><i></i><i></i></span></button>
+<a class="logo" href="design-3-warm-craft-index.html"><span class="brandname">CustomNest</span><b>.</b></a>
+<nav class="main"><a href="design-3-warm-craft-index.html" class="">Home</a><a href="design-3-warm-craft-shop.html" class="">Shop</a><a href="design-3-warm-craft-customize.html" class="act">Customize Studio</a><a href="design-3-warm-craft-about.html" class="">About</a><a href="design-3-warm-craft-track.html" class="">Track Order</a><a href="design-3-warm-craft-faq.html" class="">FAQ</a><a href="design-3-warm-craft-contact.html" class="">Contact</a></nav>
+<div class="hicons"><button class="iconbtn tooltip" data-tip="Search" onclick="openSearch()" aria-label="search">⌕</button>
+<button class="iconbtn tooltip" data-tip="Wishlist" onclick="toast('Wishlist has ' + wishlist.size + ' item(s)')" aria-label="wishlist">♡<span class="badge wish-count">0</span></button>
+<button class="iconbtn tooltip" data-tip="Cart" id="cartBtn" onclick="openCart()" aria-label="cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12h10.4l2-8H7"/></svg><span class="badge cart-count cart-badge">0</span></button></div></div>
+<div class="switcher"><b>COLOURS:</b><button class="swatch active" data-theme="Terracotta" onclick="setTheme('Terracotta',this)">Terracotta</button><button class="swatch " data-theme="Sage" onclick="setTheme('Sage',this)">Sage</button><button class="swatch " data-theme="Denim" onclick="setTheme('Denim',this)">Denim</button><button class="swatch " data-theme="Charcoal" onclick="setTheme('Charcoal',this)">Charcoal</button><small style="color:#666">Tap to re-skin this whole design</small></div></header>
+<main><div class="wrap custwrap"><h2 class="sec">Customize Studio</h2><p class="sub">This page is the heart of the store. Pick any product, type the name, choose a style and colour, and see the finished piece before you spend a rupee.</p>
+<div class="toolbar" id="custChips"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:10px" class="herogrid">
+<div><div class="galmain" id="custStage"><span class="gart" id="custArt" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center"></span><span class="previewText" id="custPreview">Your Name</span></div>
+<p style="margin-top:10px;color:#666;font-size:14px">Live preview stage. What you see is what gets made.</p></div>
+<div><div class="field"><label for="custProduct">Product</label><select id="custProduct" onchange="pickProduct(+this.value)"></select></div>
+<div class="field"><label for="custText">Name or text</label><input id="custText" maxlength="24" placeholder="e.g. Ahmed Khan" oninput="updCust()"></div>
+<div class="field"><label for="custFont">Text style</label><select id="custFont" onchange="updCust()"><option value="clean">Clean Bold</option><option value="script">Script / Handwriting</option><option value="caps">Caps with Wide Spacing</option><option value="bold">Extra Bold</option></select></div>
+<div class="field"><label>Colour</label><div class="swatches" id="custSwatches"></div></div>
+<div class="field"><label>Quantity</label><span class="qty"><button onclick="cQty(-1)">−</button><output id="custQty">1</output><button onclick="cQty(1)">+</button></span></div>
+<div class="price" style="font-size:26px" id="custPrice"></div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px"><button class="btn" style="flex:1" onclick="custAdd(this)">Add to Cart</button><a class="btn alt" href="design-3-warm-craft-shop.html">Browse Shop</a></div>
+<div class="acc"><button onclick="this.parentElement.classList.toggle('open')">Photo products - how it works <span>+</span></button><div class="abody">For the Photo Keychain, add it here with any name, then send your photo after ordering (demo note). The print is sealed on both sides.</div></div>
+</div></div></div>
+<script>
+let cp = null, cq = 1, cIdx = 0;
+function paintStage(){ const st = document.getElementById("custStage"); st.style.background = bgFor(shade(cp.color, cIdx)); document.getElementById("custArt").innerHTML = art(cp.kind, shade(cp.color, cIdx)); updCust(); paintPrice(); }
+function paintPrice(){ const el = document.getElementById("custPrice"); el.textContent = money(cp.price * cq); el.style.animation = "none"; void el.offsetWidth; el.style.animation = "pop .3s"; }
+function updCust(){ const v = document.getElementById("custText").value.trim(); const f = document.getElementById("custFont").value; const pv = document.getElementById("custPreview");
+  pv.textContent = v || "Your Name"; pv.style.fontFamily = f==="script" ? "cursive" : f==="bold" ? "Arial Black, sans-serif" : "inherit"; pv.style.letterSpacing = f==="caps" ? "3px" : "normal"; pv.style.textTransform = f==="caps" ? "uppercase" : "none"; }
+function pickProduct(id){ cp = PRODUCTS.find(p=>p.id===id); cIdx = 0; document.getElementById("custProduct").value = String(id);
+  document.getElementById("custSwatches").innerHTML = [0,1,2].map(i=>`<button style="background:${shade(cp.color,i)}" class="${i===0?"active":""}" onclick="cIdx=${i};document.querySelectorAll('#custSwatches button').forEach(b=>b.classList.remove('active'));this.classList.add('active');paintStage()" aria-label="colour ${i+1}"></button>`).join("");
+  document.querySelectorAll("#custChips .chip").forEach(ch=>ch.classList.toggle("active", +ch.dataset.id === id)); paintStage(); }
+function cQty(dd){ cq = Math.max(1, cq + dd); document.getElementById("custQty").textContent = cq; paintPrice(); }
+function custAdd(el){ addToCart(cp.id, cq, document.getElementById("custText").value, el); setTimeout(openCart, 350); }
+window.init_customize = function(){ document.getElementById("custProduct").innerHTML = PRODUCTS.map(p=>`<option value="${p.id}">${p.name} - ${money(p.price)}</option>`).join("");
+  document.getElementById("custChips").innerHTML = PRODUCTS.filter(p=>p.badge).map(p=>`<button class="chip" data-id="${p.id}" onclick="pickProduct(${p.id})">${p.name.split(" - ")[0]}</button>`).join("");
+  pickProduct(1); };
+</script></main>
+<footer class="site"><div class="fwrap"><div><h4 class="brandname">CustomNest</h4><p>Placeholder brand for this design demo. Final name, logo and details will be placed here. Shape style: SVG Cutouts and Arches.</p></div>
+<div><h4>Shop</h4><a href="design-3-warm-craft-shop.html">All Products</a><a href="design-3-warm-craft-shop.html?cat=bottles">Temperature Bottles</a><a href="design-3-warm-craft-shop.html?cat=keychains">Keychains</a><a href="design-3-warm-craft-shop.html?cat=diaries">Diaries</a><a href="design-3-warm-craft-shop.html?cat=pens">Pens</a></div>
+<div><h4>Explore</h4><a href="design-3-warm-craft-customize.html">Customize Studio</a><a href="design-3-warm-craft-about.html">About Us</a><a href="design-3-warm-craft-track.html">Track Order</a><a href="design-3-warm-craft-faq.html">FAQ</a></div>
+<div><h4>Contact (Placeholder)</h4><p>Phone: 03xx-xxxxxxx<br>Email: hello@example.com<br>City: To be confirmed</p><a href="design-3-warm-craft-contact.html">Contact page</a></div></div>
+<p style="text-align:center;margin-top:30px;color:#aaa;font-size:13px">Demo design for approval only. Prices and products are demo placeholders in PKR.</p></footer>
+<div class="backdrop" id="backdrop" onclick="closeAll()"></div>
+<aside id="mobileMenu"><div style="display:flex;justify-content:space-between;align-items:center"><b class="brandname" style="font-size:20px">CustomNest</b><button class="iconbtn" onclick="closeMenu()">×</button></div>
+<a href="design-3-warm-craft-index.html">Home</a><a href="design-3-warm-craft-shop.html">Shop</a><a href="design-3-warm-craft-customize.html">Customize Studio</a><a href="design-3-warm-craft-about.html">About</a><a href="design-3-warm-craft-track.html">Track Order</a><a href="design-3-warm-craft-faq.html">FAQ</a><a href="design-3-warm-craft-contact.html">Contact</a>
+<a href="#" class="has-sub" onclick="this.classList.toggle('open');return false">Categories +</a><div class="subm"><a href="design-3-warm-craft-shop.html?cat=bottles">Temperature Bottles</a><a href="design-3-warm-craft-shop.html?cat=keychains">Keychains</a><a href="design-3-warm-craft-shop.html?cat=diaries">Diaries</a><a href="design-3-warm-craft-shop.html?cat=pens">Pens</a></div>
+<a href="design-3-warm-craft-checkout.html">Checkout</a></aside>
+<aside id="cartDrawer"><header><b style="font-size:19px">Your Cart</b><button class="iconbtn" onclick="closeCart()">×</button></header>
+<div style="padding:14px 18px 0"><div id="shipMsg" style="font-size:14.5px"></div><div class="shipbar"><i id="shipFill"></i></div></div>
+<div id="cartItems"></div>
+<div style="padding:16px 18px;border-top:2px solid var(--ink)"><div style="display:flex;justify-content:space-between"><span>Subtotal</span><b id="cartSubtotal">Rs. 0</b></div>
+<div style="display:flex;justify-content:space-between"><span>Delivery</span><b id="cartDelivery">Rs. 0</b></div>
+<div style="display:flex;justify-content:space-between;font-size:19px;margin-top:6px"><span><b>Total</b></span><b id="cartGrand">Rs. 0</b></div>
+<a class="btn block" style="margin-top:14px" href="design-3-warm-craft-checkout.html">Checkout - COD</a></div></aside>
+<div id="quickModal"><div class="backdrop open" style="position:absolute" onclick="closeQuick()"></div><div class="box" id="quickBox"></div></div>
+<div id="searchOverlay"><div style="max-width:900px;margin:0 auto"><div style="display:flex;gap:10px;align-items:center"><input id="bigSearch" placeholder="Search bottles, diaries, pens..." oninput="doSearch(this.value)" style="flex:1;padding:16px;border:3px solid var(--ink);font-size:19px;border-radius:var(--radius)"><button class="iconbtn" onclick="closeSearch()" aria-label="close search">×</button></div>
+<p style="margin:14px 0;color:#666">Results update as you type.</p><div class="grid" id="searchResults"></div></div></div>
+<div id="recentStrip"></div>
+<div id="toast" role="status"></div>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="back to top">↑</button>
+<button id="chatBtn" class="pulseonce" onclick="toggleChat()" aria-label="chat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12z"/></svg></button>
+<div id="chatPanel"><header><span>Store Assistant (Demo)</span><button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:20px">×</button></header>
+<div id="chatMsgs"><div class="msg bot">Hello! I can help with prices, delivery, tracking and customization. Try asking about a bottle or the delivery charge.</div><div class="typing" id="typing"><i></i> <i></i> <i></i></div></div>
+<footer><input id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">Send</button></footer></div>
+<nav id="bottomNav"><a href="design-3-warm-craft-index.html" style="text-decoration:none"><button class=""><span>⌂</span>Home</button></a><a href="design-3-warm-craft-shop.html" style="text-decoration:none"><button class=""><span>▦</span>Shop</button></a><button id="bnCart" onclick="openCart()"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12h10.4l2-8H7"/></svg></span><span>Cart (<span class="cart-count">0</span>)</span></button><a href="design-3-warm-craft-track.html" style="text-decoration:none"><button class=""><span>◎</span>Track</button></a></nav>
+<script>const THEMES = {"Terracotta": ["#9c4a1f", "#2f5d50", "#fdf6ec", "#fdf6ec"], "Sage": ["#4c6444", "#b5762e", "#f5f7ef", "#f5f7ef"], "Denim": ["#2c4a73", "#c2703d", "#f2f5fa", "#f2f5fa"], "Charcoal": ["#2e2a26", "#a85d32", "#f8f4ee", "#f8f4ee"]};
+
+const BRAND_NAME = "CustomNest"; /* PLACEHOLDER BRAND - one place to rename */
+const DESIGN_KEY = "d3";
+const K = (n)=> DESIGN_KEY + "_" + n;
+const FREE_SHIP = 5000, DELIVERY = 350;
+const PRODUCTS = [{"id": 1, "name": "Thermo Steel Bottle 500ml - Temperature Display", "cat": "bottles", "price": 2499, "old": 3199, "color": "#2f5d50", "kind": "bottle", "badge": "BEST SELLER", "desc": "Vacuum insulated steel bottle with LED temperature display on the lid. Your name is laser engraved on the body.", "specs": ["500ml capacity", "LED temperature display on lid", "Keeps drinks cold 24h / hot 12h", "Name engraving included"]}, {"id": 2, "name": "Thermo Steel Bottle 750ml - Matte Black", "cat": "bottles", "price": 2999, "old": 3799, "color": "#222222", "kind": "bottle", "badge": "NEW", "desc": "Large matte black temperature bottle for gym and office. Add any name or short text.", "specs": ["750ml capacity", "Matte anti-slip finish", "LED temperature display", "Custom text up to 20 characters"]}, {"id": 3, "name": "Kids Thermo Bottle 350ml - Pastel", "cat": "bottles", "price": 1899, "old": 2399, "color": "#7a9cc6", "kind": "bottle", "badge": "", "desc": "Small, light temperature bottle for school. Child name printed clearly so it never gets lost.", "specs": ["350ml capacity", "Leak-proof straw lid", "BPA-free inner steel", "Name print included"]}, {"id": 4, "name": "Thermo Bottle - Wood Finish Edition", "cat": "bottles", "price": 2799, "old": 0, "color": "#8a5a33", "kind": "bottle", "badge": "", "desc": "Wood-finish temperature bottle with a premium gift box. Ideal for corporate gifts.", "specs": ["500ml capacity", "Wood texture finish", "Gift box included", "Logo or name engraving"]}, {"id": 5, "name": "Thermo Bottle - Rose Pink", "cat": "bottles", "price": 2399, "old": 2899, "color": "#c4708a", "kind": "bottle", "badge": "", "desc": "Soft rose pink temperature bottle. A thoughtful customized gift for her.", "specs": ["500ml capacity", "LED temperature display", "Scratch resistant coat", "Name in script font option"]}, {"id": 6, "name": "Thermo Bottle - Navy Sport", "cat": "bottles", "price": 2599, "old": 0, "color": "#1d3557", "kind": "bottle", "badge": "", "desc": "Navy sport temperature bottle with carry loop. Built for travel and training days.", "specs": ["600ml capacity", "Carry loop handle", "LED temperature display", "Any name or number"]}, {"id": 7, "name": "Thermo Bottle - Silver Classic", "cat": "bottles", "price": 2299, "old": 2799, "color": "#9aa0a6", "kind": "bottle", "badge": "", "desc": "Classic brushed silver temperature bottle. Clean engraving, timeless look.", "specs": ["500ml capacity", "Brushed steel body", "LED temperature display", "Engraving included"]}, {"id": 8, "name": "Metal Keychain - Engraved Name Plate", "cat": "keychains", "price": 599, "old": 799, "color": "#8a6d3b", "kind": "keychain", "badge": "BEST SELLER", "desc": "Solid metal keychain with your name engraved on a polished plate.", "specs": ["Solid metal body", "Deep laser engraving", "Strong split ring", "Text up to 15 characters"]}, {"id": 9, "name": "Leather Keychain - Tan", "cat": "keychains", "price": 749, "old": 999, "color": "#a9743f", "kind": "keychain", "badge": "", "desc": "Genuine-feel leather strap keychain with stamped name. Ages beautifully.", "specs": ["Leather strap", "Stamped name", "Brass ring", "Gift pouch included"]}, {"id": 10, "name": "Photo Keychain - Double Side", "cat": "keychains", "price": 649, "old": 0, "color": "#5b4a8a", "kind": "keychain", "badge": "PHOTO", "desc": "Your photo printed on both sides, sealed in a clear acrylic keychain.", "specs": ["Double side photo print", "Clear acrylic body", "Water resistant seal", "Any photo you send"]}, {"id": 11, "name": "Wooden Keychain - Round", "cat": "keychains", "price": 449, "old": 599, "color": "#b08954", "kind": "keychain", "badge": "", "desc": "Light round wooden keychain with burned-in name text. Simple and warm.", "specs": ["Natural wood", "Burned-in text", "Lightweight", "Eco-friendly material"]}, {"id": 12, "name": "Car Keychain - Number Plate Style", "cat": "keychains", "price": 699, "old": 899, "color": "#333333", "kind": "keychain", "badge": "", "desc": "Mini number plate keychain with your car number and name. A driver favourite.", "specs": ["Plate style design", "Car number + name", "Metal body", "Scratch resistant print"]}, {"id": 13, "name": "Heart Keychain - Couple Set of 2", "cat": "keychains", "price": 999, "old": 1299, "color": "#b23a48", "kind": "keychain", "badge": "SET OF 2", "desc": "Two heart halves with two names. One for you, one for your person.", "specs": ["Set of 2 pieces", "Two names included", "Polished metal", "Gift box included"]}, {"id": 14, "name": "Initial Letter Keychain", "cat": "keychains", "price": 499, "old": 0, "color": "#2a6f97", "kind": "keychain", "badge": "", "desc": "Bold initial letter keychain in your chosen colour. Minimal and personal.", "specs": ["Any letter A-Z", "Colour options", "Acrylic body", "Name on back side"]}, {"id": 15, "name": "Leather Diary A5 - Name Embossed", "cat": "diaries", "price": 1499, "old": 1899, "color": "#6b3f2a", "kind": "diary", "badge": "BEST SELLER", "desc": "A5 leather diary with your name embossed on the cover. 200 ruled pages.", "specs": ["A5 size, 200 pages", "Name embossed on cover", "Ruled premium paper", "Elastic closure band"]}, {"id": 16, "name": "Hardcover Diary - Minimal Black", "cat": "diaries", "price": 1199, "old": 1499, "color": "#1f1f1f", "kind": "diary", "badge": "", "desc": "Clean black hardcover diary with foil name print. For work and planning.", "specs": ["A5 size, 192 pages", "Foil name print", "Lay-flat binding", "Ribbon bookmark"]}, {"id": 17, "name": "Diary + Pen Gift Set", "cat": "diaries", "price": 2199, "old": 2799, "color": "#7a1f2b", "kind": "diary", "badge": "GIFT SET", "desc": "Matching diary and pen set in a gift box. Both pieces carry the same name.", "specs": ["Diary + matching pen", "Name on both pieces", "Gift box included", "200 ruled pages"]}, {"id": 18, "name": "Floral Cover Diary - For Her", "cat": "diaries", "price": 1299, "old": 0, "color": "#c98aa6", "kind": "diary", "badge": "", "desc": "Soft floral cover diary with a printed name. Gentle colours, smooth paper.", "specs": ["A5 size, 180 pages", "Printed name on cover", "Smooth 80gsm paper", "Back pocket folder"]}, {"id": 19, "name": "Travel Journal - Kraft", "cat": "diaries", "price": 999, "old": 1299, "color": "#b08954", "kind": "diary", "badge": "", "desc": "Kraft travel journal with a stamped name. Blank pages for sketches and notes.", "specs": ["A5 size, 160 pages", "Blank pages", "Stamped name", "Leather strap closure"]}, {"id": 20, "name": "Executive Diary - Navy with Gold Name", "cat": "diaries", "price": 1699, "old": 2099, "color": "#1d3557", "kind": "diary", "badge": "", "desc": "Navy executive diary with gold foil name. A sharp desk companion.", "specs": ["A5 size, 220 pages", "Gold foil name", "Dated planner section", "Pen loop holder"]}, {"id": 21, "name": "Pocket Diary - Small Size", "cat": "diaries", "price": 799, "old": 999, "color": "#3f6b4f", "kind": "diary", "badge": "", "desc": "Pocket diary that fits in a bag or coat. Name printed on the front.", "specs": ["Pocket size, 144 pages", "Name printed", "Soft cover", "Elastic band"]}, {"id": 22, "name": "Metal Pen - Name Engraved", "cat": "pens", "price": 899, "old": 1199, "color": "#2b2b2b", "kind": "pen", "badge": "BEST SELLER", "desc": "Smooth metal ball pen with your name engraved along the barrel.", "specs": ["Metal body", "Laser engraved name", "Blue ink refill", "Gift sleeve included"]}, {"id": 23, "name": "Customized Pen - Gold Trim", "cat": "pens", "price": 1099, "old": 1399, "color": "#8a6d3b", "kind": "pen", "badge": "", "desc": "Black pen with gold trim and engraved name. Made for signatures that matter.", "specs": ["Gold trim finish", "Engraved name", "Smooth ball point", "Refillable"]}, {"id": 24, "name": "Customized Pen - Rose Gold", "cat": "pens", "price": 999, "old": 0, "color": "#b76e79", "kind": "pen", "badge": "NEW", "desc": "Rose gold customized pen with script engraving. Elegant and giftable.", "specs": ["Rose gold body", "Script engraving option", "Blue ink", "Velvet pouch included"]}, {"id": 25, "name": "Pen + Keychain Combo", "cat": "pens", "price": 1299, "old": 1699, "color": "#355070", "kind": "pen", "badge": "COMBO", "desc": "Engraved pen with a matching name keychain in one box. Same name, two keepsakes.", "specs": ["Pen + keychain", "Same name on both", "Gift box included", "Metal bodies"]}, {"id": 26, "name": "Wooden Pen - Handcrafted", "cat": "pens", "price": 1199, "old": 1499, "color": "#8a5a33", "kind": "pen", "badge": "", "desc": "Handcrafted wooden pen with burned-in name. No two pieces are exactly alike.", "specs": ["Natural wood body", "Burned-in name", "Balanced weight", "Refillable"]}, {"id": 27, "name": "Teacher Pen - Thank You Edition", "cat": "pens", "price": 849, "old": 1099, "color": "#6a4c93", "kind": "pen", "badge": "", "desc": "A pen engraved with a thank-you line and the teacher name. Ready to gift.", "specs": ["Thank-you engraving", "Teacher name included", "Metal body", "Gift card included"]}, {"id": 28, "name": "Corporate Pen Set of 5", "cat": "pens", "price": 3499, "old": 4499, "color": "#444444", "kind": "pen", "badge": "SET OF 5", "desc": "Five engraved pens with your company name. For teams, events and client gifts.", "specs": ["Set of 5 pens", "Company name engraving", "Uniform finish", "Bulk gift boxes"]}];
+const CATS = {bottles:"Temperature Bottles", keychains:"Keychains", diaries:"Diaries", pens:"Pens & Customized Pens"};
+function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+function money(n){ return "Rs. " + n.toLocaleString("en-PK"); }
+let cart = []; try { cart = JSON.parse(safeGet(K("cart"))||"[]"); if(!Array.isArray(cart)) cart = []; } catch(e){ cart = []; }
+let wishlist = new Set(); try { wishlist = new Set(JSON.parse(safeGet(K("wish"))||"[]")); } catch(e){}
+let recent = []; try { recent = JSON.parse(safeGet(K("recent"))||"[]"); } catch(e){}
+function saveCart(){ safeSet(K("cart"), JSON.stringify(cart)); }
+function art(kind, color){
+  if(kind==="bottle") return `<svg viewBox="0 0 100 130" aria-hidden="true"><rect x="38" y="6" width="24" height="16" rx="2" fill="#222"/><rect x="42" y="10" width="16" height="7" fill="#7CFC9A"/><rect x="30" y="24" width="40" height="100" rx="7" fill="${color}"/><rect x="30" y="58" width="40" height="3" fill="rgba(255,255,255,.45)"/><text x="50" y="46" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">24.5°</text></svg>`;
+  if(kind==="keychain") return `<svg viewBox="0 0 100 130" aria-hidden="true"><circle cx="50" cy="24" r="15" fill="none" stroke="#888" stroke-width="5"/><rect x="26" y="44" width="48" height="66" rx="6" fill="${color}"/></svg>`;
+  if(kind==="diary") return `<svg viewBox="0 0 100 130" aria-hidden="true"><rect x="20" y="12" width="62" height="106" rx="4" fill="${color}"/><rect x="20" y="12" width="9" height="106" fill="rgba(0,0,0,.28)"/><text x="56" y="66" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">DIARY</text></svg>`;
+  return `<svg viewBox="0 0 100 130" aria-hidden="true"><g transform="rotate(24 50 65)"><rect x="44" y="10" width="12" height="86" fill="${color}"/><polygon points="44,96 56,96 50,118" fill="#d9b36c"/><rect x="44" y="10" width="12" height="12" fill="#d9b36c"/></g><text x="50" y="126" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">CUSTOM PEN</text></svg>`;
+}
+const CART_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12h10.4l2-8H7"/></svg>`;
+const CHAT_SVG = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12z"/></svg>`;
+function shade(hex, i){ const sh=[hex,"#444444","#8a6d3b"]; return i===0?hex:sh[i]; }
+function bgFor(c){ return c + "22"; }
+function prodURL(p){ return "design-3-warm-craft-product.html?id=" + p.id; }
+function cardHTML(p){
+  const save = p.old ? Math.round((1-p.price/p.old)*100) : 0;
+  return `<article class="card"><div class="pimg" style="background:${bgFor(p.color)}" onclick="location.href='${prodURL(p)}'">${p.badge?`<span class="cbadge">${p.badge}</span>`:""}
+    <span class="art1">${art(p.kind,p.color)}</span><span class="art2">${art(p.kind, shade(p.color,1))}</span>
+    <button class="quick" onclick="event.stopPropagation();quickView(${p.id})">Quick View</button></div>
+   <div class="cbody"><span class="cat">${CATS[p.cat]}</span><h3><a href="${prodURL(p)}" style="text-decoration:none">${p.name}</a></h3>
+    <div><span class="price">${money(p.price)}${p.old?`<s>${money(p.old)}</s>`:""}</span> ${save?`<span class="save">Save ${save}%</span>`:""}</div>
+    <button class="wishbtn ${wishlist.has(p.id)?"on":""}" onclick="toggleWish(${p.id},this)" aria-label="wishlist">${wishlist.has(p.id)?"♥":"♡"}</button>
+    <button class="add" onclick="addToCart(${p.id},1,'',this)">Add to Cart</button></div></article>`;
+}
+function toggleWish(id, el){ if(wishlist.has(id)){ wishlist.delete(id); el.textContent="♡"; el.classList.remove("on"); toast("Removed from wishlist"); } else { wishlist.add(id); el.textContent="♥"; el.classList.add("on"); toast("Saved to wishlist"); } safeSet(K("wish"), JSON.stringify([...wishlist])); updateCounts(); }
+function quickView(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  document.getElementById("quickBox").innerHTML = `<button onclick="closeQuick()" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:24px" aria-label="close">×</button>
+   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div style="width:130px;height:130px;flex:none;display:flex;align-items:center;justify-content:center;background:${bgFor(p.color)};border-radius:var(--radius)">${art(p.kind,p.color)}</div>
+   <div style="flex:1;min-width:200px"><span class="cat">${CATS[p.cat]}</span><h3 style="margin:6px 0">${p.name}</h3><div class="price">${money(p.price)}</div><p style="color:#555;margin-top:6px">${p.desc}</p></div></div>
+   <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap"><a class="btn" style="flex:1" href="${prodURL(p)}">Customize Now <span class="arr">→</span></a><button class="btn alt" onclick="addToCart(${p.id},1,'',this)">Add to Cart</button></div>`;
+  document.getElementById("quickModal").classList.add("open"); document.getElementById("backdrop").classList.add("open");
+}
+function closeQuick(){ document.getElementById("quickModal").classList.remove("open"); document.getElementById("backdrop").classList.remove("open"); }
+function flyToCart(fromEl, p){
+  const targetEl = window.innerWidth <= 900 ? document.getElementById("bnCart") : document.getElementById("cartBtn");
+  if(!fromEl || !targetEl) return;
+  const r = fromEl.getBoundingClientRect(); const t = targetEl.getBoundingClientRect();
+  const f = document.createElement("div"); f.className="fly"; f.innerHTML = art(p.kind,p.color);
+  f.style.left = Math.max(0,r.left + r.width/2 - 37) + "px"; f.style.top = Math.max(0,r.top) + "px"; document.body.appendChild(f);
+  requestAnimationFrame(()=>{ f.style.left=(t.left+4)+"px"; f.style.top=(t.top+4)+"px"; f.style.width="34px"; f.style.height="34px"; f.style.opacity=".3"; });
+  setTimeout(()=>{ f.remove(); document.querySelectorAll(".cart-badge").forEach(b=>{ b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }); }, 770);
+}
+function addToCart(id, qty, custom, fromEl){
+  const p = PRODUCTS.find(x=>x.id===id);
+  const text = (custom||"").trim(); const key = id + "|" + text;
+  const ex = cart.find(c=>c.key===key);
+  if(ex) ex.qty += qty; else cart.push({key, id, qty, custom:text});
+  saveCart(); flyToCart(fromEl ? (fromEl.closest(".card,.pdp,.box,.custwrap") || fromEl) : null, p);
+  setTimeout(()=>{ updateCounts(); renderCart(true); toast("Added to cart - " + p.name); }, 130);
+}
+function cartTotal(){ return cart.reduce((s,c)=> s + PRODUCTS.find(p=>p.id===c.id).price * c.qty, 0); }
+function cartCount(){ return cart.reduce((s,c)=>s+c.qty,0); }
+function updateCounts(){ document.querySelectorAll(".cart-count").forEach(e=>e.textContent = cartCount()); document.querySelectorAll(".wish-count").forEach(e=>e.textContent = wishlist.size); }
+function renderCart(highlight){
+  const box = document.getElementById("cartItems"); if(!box) return;
+  if(!cart.length){ box.innerHTML = `<p style="text-align:center;padding:30px 8px;color:#555">Your cart is empty.<br><br><a class="btn" href="design-3-warm-craft-shop.html" onclick="closeCart()">Start Shopping</a></p>`; }
+  else box.innerHTML = cart.map((c,i)=>{ const p=PRODUCTS.find(x=>x.id===c.id); return `<div class="citem ${highlight&&i===cart.length-1?"flash":""}"><div class="thumb" style="background:${bgFor(p.color)}">${art(p.kind,p.color)}</div>
+    <div style="flex:1"><b style="font-size:14.5px">${p.name}</b>${c.custom?`<div style="font-size:13px;color:var(--accent);font-weight:700">Custom text: "${c.custom.replace(/</g,"&lt;")}"</div>`:""}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px"><span class="qty"><button onclick="cartQty(${i},-1)">−</button><output>${c.qty}</output><button onclick="cartQty(${i},1)">+</button></span><b>${money(p.price*c.qty)}</b></div>
+    <button onclick="removeItem(${i},this)" style="background:none;border:none;color:#b23a48;font-weight:700;margin-top:6px;padding:4px 0">Remove</button></div></div>`; }).join("");
+  const t = cartTotal(); const pct = Math.min(100, Math.round(t/FREE_SHIP*100));
+  const sm = document.getElementById("shipMsg"); if(sm) sm.innerHTML = t>=FREE_SHIP ? `<b style="color:var(--accent)">You unlocked FREE delivery.</b>` : `Add <b>${money(FREE_SHIP-t)}</b> more for FREE delivery`;
+  const sf = document.getElementById("shipFill"); if(sf) sf.style.width = pct + "%";
+  const set = (id,v)=>{ const e=document.getElementById(id); if(e) e.textContent = v; };
+  set("cartSubtotal", money(t)); set("cartDelivery", cart.length ? (t>=FREE_SHIP ? "FREE" : money(DELIVERY)) : money(0)); set("cartGrand", money(t + (cart.length && t<FREE_SHIP ? DELIVERY : 0)));
+}
+function cartQty(i,d){ cart[i].qty += d; if(cart[i].qty<1) cart.splice(i,1); saveCart(); updateCounts(); renderCart(false); }
+function removeItem(i, el){ const row = el ? el.closest(".citem") : null; if(row){ row.classList.add("bye"); setTimeout(()=>{ cart.splice(i,1); saveCart(); updateCounts(); renderCart(false); toast("Item removed"); }, 280); } else { cart.splice(i,1); saveCart(); updateCounts(); renderCart(false); } }
+function openCart(){ renderCart(false); document.getElementById("cartDrawer").classList.add("open"); document.getElementById("backdrop").classList.add("open"); }
+function closeCart(){ const d=document.getElementById("cartDrawer"); if(d) d.classList.remove("open"); syncBackdrop(); }
+function openMenu(){ document.getElementById("mobileMenu").classList.add("open"); document.getElementById("backdrop").classList.add("open"); document.getElementById("hamburger").classList.add("x"); }
+function closeMenu(){ const m=document.getElementById("mobileMenu"); if(m) m.classList.remove("open"); const h=document.getElementById("hamburger"); if(h) h.classList.remove("x"); syncBackdrop(); }
+function syncBackdrop(){ const any = (document.getElementById("cartDrawer")||{}).classList?.contains("open") || (document.getElementById("mobileMenu")||{}).classList?.contains("open") || (document.getElementById("quickModal")||{}).classList?.contains("open"); document.getElementById("backdrop").classList.toggle("open", !!any); }
+function closeAll(){ closeCart(); closeMenu(); closeQuick(); }
+let toastTimer;
+function toast(msg){ const t=document.getElementById("toast"); if(!t) return; t.textContent=msg; t.classList.add("show"); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),2600); }
+function setTheme(name, el){
+  document.querySelectorAll(".swatch").forEach(s=>s.classList.remove("active")); if(el) el.classList.add("active");
+  const th = THEMES[name]; if(!th) return; const r = document.documentElement.style;
+  r.setProperty("--primary", th[0]); r.setProperty("--accent", th[1]); r.setProperty("--bg", th[2]); r.setProperty("--headerbg", th[3]);
+  safeSet(K("theme"), name); toast("Colour changed: " + name);
+}
+/* full-screen search */
+function openSearch(){ document.getElementById("searchOverlay").classList.add("open"); const i=document.getElementById("bigSearch"); if(i){ i.focus(); doSearch(i.value); } }
+function closeSearch(){ document.getElementById("searchOverlay").classList.remove("open"); }
+function doSearch(q){
+  q = (q||"").toLowerCase(); const box = document.getElementById("searchResults"); if(!box) return;
+  const list = PRODUCTS.filter(p=>p.name.toLowerCase().includes(q) || CATS[p.cat].toLowerCase().includes(q));
+  box.innerHTML = q && !list.length ? `<p style="padding:20px;border:2px dashed #bbb;text-align:center">No matches. Try bottle, diary, pen or keychain.</p>` : list.slice(0,8).map(cardHTML).join("");
+}
+/* chat */
+const CHAT_RULES = [
+ [/price|rate|cost/i, "Prices are shown on every product card. Customization (name or text) is included in the price."],
+ [/deliver|shipping|days/i, "Delivery is Rs. 350 and FREE above Rs. 5,000. Customized orders take 2-3 working days to prepare."],
+ [/track|order/i, "Track any order on the Track Order page with your order number, for example CN-123456."],
+ [/custom|name|engrav|photo/i, "Open the Customize Studio page: pick a product, type the name, pick a style and watch the live preview."],
+ [/pay|cod|cash/i, "We offer Cash on Delivery. You pay when your order arrives."],
+ [/hi|hello|salam|aoa/i, "Hello! Welcome to " + "CustomNest" + ". Ask me about bottles, keychains, diaries or pens."],
+];
+function toggleChat(){ document.getElementById("chatPanel").classList.toggle("open"); }
+function sendChat(){
+  const inp = document.getElementById("chatInput"); const v = inp.value.trim(); if(!v) return;
+  const box = document.getElementById("chatMsgs");
+  box.innerHTML += `<div class="msg me">${v.replace(/</g,"&lt;")}</div>`; inp.value=""; box.scrollTop = box.scrollHeight;
+  const ty = document.getElementById("typing"); ty.classList.add("show");
+  const rule = CHAT_RULES.find(r=>r[0].test(v));
+  let reply = rule ? rule[1] : "Every product here can be customized with a name or text. Try the Customize Studio, or ask me about prices, delivery or tracking.";
+  setTimeout(()=>{ ty.classList.remove("show"); box.innerHTML += `<div class="msg bot">${reply}</div>`;
+    if(/bottle|pen|diary|keychain/i.test(v)){ const p = PRODUCTS.find(x=>v.toLowerCase().includes(x.kind) || CATS[x.cat].toLowerCase().includes(v.toLowerCase())); if(p) box.innerHTML += `<div class="msg bot">Have a look: <b>${p.name}</b> - ${money(p.price)}<br><a href="${prodURL(p)}">Open product</a></div>`; }
+    box.scrollTop = box.scrollHeight; }, 850);
+}
+/* page transition on internal links */
+document.addEventListener("click", (e)=>{
+  const a = e.target.closest("a[href]"); if(!a) return; const href = a.getAttribute("href");
+  if(!href || href.startsWith("#") || href.startsWith("http") || a.target === "_blank") return;
+  e.preventDefault(); document.body.classList.add("leaving"); setTimeout(()=>{ location.href = href; }, 200);
+});
+/* scroll fx: progress, header shrink + hide/show, back-to-top, counters, rings, dividers */
+let lastY = 0;
+window.addEventListener("scroll", ()=>{
+  const h = document.documentElement; const pct = h.scrollTop / Math.max(1,(h.scrollHeight - h.clientHeight)) * 100;
+  const pb = document.getElementById("progressBar"); if(pb) pb.style.width = pct + "%";
+  const hd = document.querySelector("header.site");
+  if(hd){ hd.classList.toggle("shrunk", h.scrollTop > 30); if(h.scrollTop > 420 && h.scrollTop > lastY + 6) hd.classList.add("hideup"); else if(h.scrollTop < lastY - 4) hd.classList.remove("hideup"); }
+  const bt = document.getElementById("backTop"); if(bt) bt.classList.toggle("show", h.scrollTop > 600);
+  lastY = h.scrollTop;
+}, {passive:true});
+function initCounters(){
+  const io = new IntersectionObserver(es=>{ es.forEach(en=>{ if(!en.isIntersecting) return; const el = en.target; io.unobserve(el);
+    if(el.dataset.count){ const end = +el.dataset.count; let n = 0; const iv = setInterval(()=>{ n += Math.ceil(end/28); if(n>=end){ n=end; clearInterval(iv);} el.textContent = n.toLocaleString(); }, 28); }
+    if(el.classList.contains("ringfg")){ el.style.strokeDashoffset = String(314 - 314 * (+el.dataset.pct || 75) / 100); }
+  }); }, {threshold:.35});
+  document.querySelectorAll("[data-count], .ringfg").forEach(el=>io.observe(el));
+}
+/* hero slider + rotating words + typewriter + countdown */
+let heroTimer = null;
+function heroGo(i){
+  const slides = document.querySelectorAll(".hero-slide"); if(!slides.length) return;
+  slides.forEach((s,j)=>s.classList.toggle("on", j===i));
+  document.querySelectorAll(".hero-dots button").forEach((d,j)=>d.classList.toggle("on", j===i));
+  clearInterval(heroTimer); heroTimer = setInterval(()=>heroGo((i+1)%slides.length), 5200);
+}
+function initHero(){
+  if(document.querySelector(".hero-slide")) heroGo(0);
+  const rw = document.getElementById("rotWord");
+  if(rw){ const words = ["Bottles","Keychains","Diaries","Pens","Gifts"]; let wi = 0; setInterval(()=>{ wi = (wi+1)%words.length; rw.style.animation = "none"; void rw.offsetWidth; rw.textContent = words[wi]; rw.style.animation = "wordIn .45s ease"; }, 2200); }
+  const tw = document.getElementById("typewriter");
+  if(tw){ const phrases = ["Names engraved with care.", "Previews before you pay.", "Delivered to your door."]; let pi = 0, ci = 0, del = false;
+    setInterval(()=>{ const ph = phrases[pi]; if(!del){ ci++; if(ci >= ph.length){ del = true; setTimeout(()=>{}, 0); ci = ph.length; setTimeout(()=>{ del = true; }, 900); } }
+      else { ci--; if(ci <= 0){ del = false; pi = (pi+1)%phrases.length; } }
+      tw.textContent = ph.slice(0, Math.max(0, ci)); }, del ? 34 : 62); }
+  const cd = document.getElementById("countdown");
+  if(cd){ const end = Date.now() + 1000*60*60*26 + 1000*60*14; setInterval(()=>{ let ms = Math.max(0, end - Date.now()); const hh = Math.floor(ms/3600000), mm = Math.floor(ms%3600000/60000), ss = Math.floor(ms%60000/1000);
+    cd.innerHTML = `<div><b>${String(hh).padStart(2,"0")}</b>Hours</div><div><b>${String(mm).padStart(2,"0")}</b>Minutes</div><div><b>${String(ss).padStart(2,"0")}</b>Seconds</div>`; }, 1000); }
+}
+/* tilt on desktop cards */
+function initTilt(){
+  if(!window.matchMedia("(hover:hover) and (pointer:fine)").matches) return;
+  document.addEventListener("mousemove", (e)=>{ const c = e.target.closest ? e.target.closest(".tilt") : null; document.querySelectorAll(".tilt").forEach(el=>{ if(el!==c) el.style.transform = ""; });
+    if(c){ const r = c.getBoundingClientRect(); const x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5; c.style.transform = `perspective(700px) rotateY(${x*7}deg) rotateX(${-y*7}deg)`; } });
+  const mag = document.getElementById("magnetBtn");
+  if(mag){ document.addEventListener("mousemove", (e)=>{ const r = mag.getBoundingClientRect(); const dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2); if(Math.abs(dx) < 130 && Math.abs(dy) < 90) mag.style.transform = `translate(${dx*.16}px, ${dy*.16}px)`; else mag.style.transform = ""; }); }
+}
+/* generic init */
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.querySelectorAll(".brandname").forEach(e=>e.textContent = BRAND_NAME);
+  document.querySelectorAll("[data-art]").forEach(el=>{ el.innerHTML = art(el.dataset.art, el.dataset.color || "#555555"); });
+  const heroArt = document.getElementById("heroArt"); if(heroArt) heroArt.innerHTML = art("bottle","#2f5d50") + art("diary","#6b3f2a") + art("pen","#222222");
+  updateCounts(); renderCart(false); initCounters(); initHero(); initTilt();
+  const t = safeGet(K("theme")); if(t && THEMES[t]) setTheme(t, document.querySelector(`.swatch[data-theme="${t}"]`));
+  const plEl = document.getElementById("preloader");
+  let seenPl = false; try { seenPl = !!sessionStorage.getItem(K("pl_seen")); if(!seenPl) sessionStorage.setItem(K("pl_seen"), "1"); } catch(e){}
+  if(plEl){ if(seenPl) plEl.classList.add("done"); else setTimeout(()=>plEl.classList.add("done"), 900); }
+  const rs = document.getElementById("recentStrip");
+  if(rs && recent.length){ rs.innerHTML = `<b style="font-size:13px">Recently viewed:</b> ` + recent.slice(0,3).map(id=>{ const p = PRODUCTS.find(x=>x.id===id); return p ? `<a href="${prodURL(p)}" style="font-weight:700">${p.name.split(" - ")[0]}</a>` : ""; }).join(" · "); rs.classList.add("show"); setTimeout(()=>rs.classList.remove("show"), 9000); }
+  const pg = document.body.dataset.page; if(pg && typeof window["init_" + pg] === "function") window["init_" + pg]();
+});
+
+</script></body></html>
