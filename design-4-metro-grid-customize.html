@@ -402,6 +402,50 @@ footer.site a:hover{transform:translateX(6px);color:#fff}
 .btn{clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)} .card{clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)} h2.sec{font-family:Arial,sans-serif;font-weight:900}
 .herogrid svg{width:52%;height:76%}
 @media(max-width:900px){.herogrid{grid-template-columns:1fr!important}}
+
+/* ===== V3.7 MODERN STORE CHROME + COMPACT CARDS + SAFE REVEAL ===== */
+header.site{border-bottom:1px solid rgba(23,23,23,.08);box-shadow:0 2px 14px rgba(23,23,23,.05)}
+.iconbtn{border:1px solid rgba(23,23,23,.09);background:#fff;box-shadow:0 2px 8px rgba(23,23,23,.06);border-radius:12px}
+.btn{border-radius:max(var(--radius),10px)}
+.btn.ghost{border:1px solid rgba(23,23,23,.20)}
+.swatch{border:1px solid rgba(23,23,23,.16);border-radius:999px;padding:8px 16px;box-shadow:none}
+.chip{border:1px solid rgba(23,23,23,.14);border-radius:999px}
+.field input,.field select,.field textarea{border:1px solid rgba(23,23,23,.18);border-radius:10px}
+.toolbar input,.toolbar select{border:1px solid rgba(23,23,23,.18);border-radius:10px}
+.qty{border:1px solid rgba(23,23,23,.18);border-radius:10px}
+.payopt{border:1px solid rgba(23,23,23,.14);border-radius:12px}
+.acc{border:1px solid rgba(23,23,23,.14);border-radius:12px}
+.step{border:1px solid rgba(23,23,23,.10);box-shadow:0 2px 10px rgba(23,23,23,.05)}
+.hero-slide img{animation:none!important}
+.floaty{animation:none!important}
+@keyframes heroBump{from{transform:translateX(30px) scale(.98);opacity:.35}to{transform:translateX(0) scale(1);opacity:1}}
+.hero-slide.on .galmain,.hero-slide.on .floaty{animation:heroBump .6s cubic-bezier(.25,.9,.3,1.15)}
+.hero-slide.on .herogrid>div:first-child{animation:heroBump .55s ease}
+.card .cbody{padding:12px 14px 14px;gap:5px}
+.card h3{font-size:14.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em}
+.card .cat{font-size:10px;letter-spacing:1.6px}
+.card .price{font-size:16.5px}
+.card .price s{font-size:12.5px}
+.card .save{font-size:11.5px}
+.card .add{padding:11px;font-size:14px}
+.rail{scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth}
+.rail::-webkit-scrollbar{display:none}
+.railctrl{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:10px}
+.raildots{display:flex;gap:6px;align-items:center}
+.raildot{width:7px;height:7px;border-radius:99px;background:rgba(23,23,23,.18);transition:all .3s;border:none;padding:0;cursor:pointer;min-height:7px}
+.raildot.on{width:22px;background:var(--accent)}
+.railbtns{display:flex;gap:8px}
+.railarrow{width:42px;height:42px;border-radius:50%;border:1px solid rgba(23,23,23,.12);background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(23,23,23,.07)}
+.railarrow:active{transform:scale(.94)}
+.js .rv{opacity:0;transform:translateY(18px)}
+.js .rv.in{opacity:1;transform:none;transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion: reduce){.js .rv{opacity:1;transform:none}}
+
+
+/* v3.7b: toast fully hidden when empty (was peeking as a black box) */
+#toast{opacity:0;visibility:hidden;transform:translate(-50%,16px);transition:opacity .3s ease,transform .3s ease,visibility .3s}
+#toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
 </style></head><body data-page="customize">
 <div id="progressBar"></div>
 <div id="preloader"><div class="plogo"><svg width="52" height="52" viewBox="0 0 52 52"><path d="M6 26 L26 6 L46 26 L26 46 Z"/></svg></div><div class="brandname" style="font-size:22px;font-weight:900;letter-spacing:2px">CustomNest</div><div class="pbar"><i></i></div><small>Preparing your personalized store...</small></div>
@@ -715,4 +759,46 @@ document.addEventListener("DOMContentLoaded", ()=>{
   const pg = document.body.dataset.page; if(pg && typeof window["init_" + pg] === "function") window["init_" + pg]();
 });
 
-</script></body></html>
+</script><script>
+/* ===== V3.7: safe reveal + rail slider ===== */
+(function(){ 'use strict';
+try{ document.documentElement.classList.add('js'); }catch(e){}
+var SEL='.sec-head,.cat-tile,.step,.trust-item,.card,.acc,.formcard,.infocard';
+function reveal(el){ el.classList.add('in'); setTimeout(function(){ try{ el.style.transitionDelay='0ms'; }catch(e){} },900); }
+function tag(){ try{ document.querySelectorAll(SEL).forEach(function(el){ if(!el.classList.contains('rv')){ el.classList.add('rv'); var p=el.parentElement; if(p){ var sib=[].indexOf.call(p.children,el); el.style.transitionDelay=Math.min(Math.max(sib,0)*55,275)+'ms'; } } }); }catch(e){} }
+function inView(el){ var r=el.getBoundingClientRect(); return r.top < window.innerHeight*0.94 && r.bottom > 0; }
+function check(){ try{ document.querySelectorAll('.rv:not(.in)').forEach(function(el){ if(inView(el)) reveal(el); }); }catch(e){} }
+function init(){
+  tag(); check();
+  if('IntersectionObserver' in window){ try{ var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ reveal(en.target); io.unobserve(en.target); } }); },{threshold:.08,rootMargin:'0px 0px -3% 0px'}); document.querySelectorAll('.rv:not(.in)').forEach(function(el){ io.observe(el); }); new MutationObserver(function(){ tag(); document.querySelectorAll('.rv:not(.in)').forEach(function(el){ io.observe(el); }); }).observe(document.body,{childList:true,subtree:true}); }catch(e){} }
+  window.addEventListener('scroll',function(){ window.requestAnimationFrame(check); },{passive:true});
+  window.addEventListener('resize',check);
+  var wd=setInterval(check,450); setTimeout(function(){ clearInterval(wd); },20000);
+  setTimeout(check,300); setTimeout(check,1200);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+function railInit(){
+  document.querySelectorAll('.rail').forEach(function(rail){
+    if(rail.dataset.slider) return; rail.dataset.slider='1';
+    var bar=document.createElement('div'); bar.className='railctrl';
+    bar.innerHTML='<div class="raildots"></div><div class="railbtns"><button class="railarrow" data-d="-1" aria-label="Previous products"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button class="railarrow" data-d="1" aria-label="Next products"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div>';
+    rail.after(bar);
+    var dots=bar.querySelector('.raildots');
+    function pages(){ return Math.max(1, Math.round(rail.scrollWidth / Math.max(rail.clientWidth,1))); }
+    function mark(){ var idx=Math.round(rail.scrollLeft / Math.max(rail.clientWidth,1)); [].forEach.call(dots.children,function(d,i){ d.classList.toggle('on', i===idx); }); }
+    function buildDots(){ dots.innerHTML=''; for(var i=0;i<pages();i++){ var d=document.createElement('button'); d.className='raildot'; d.setAttribute('aria-label','Go to slide '+(i+1)); (function(idx){ d.addEventListener('click',function(){ pause(); rail.scrollTo({left: idx*rail.clientWidth, behavior:'smooth'}); }); })(i); dots.appendChild(d); } mark(); }
+    function step(dir){ var c=rail.querySelector('.card'); var w=c? c.offsetWidth+20 : rail.clientWidth; rail.scrollBy({left: dir*w, behavior:'smooth'}); }
+    var paused=false, resumeT=null;
+    function pause(){ paused=true; if(resumeT) clearTimeout(resumeT); resumeT=setTimeout(function(){ paused=false; },6000); }
+    bar.querySelector('[data-d="-1"]').addEventListener('click',function(){ pause(); step(-1); });
+    bar.querySelector('[data-d="1"]').addEventListener('click',function(){ pause(); step(1); });
+    rail.addEventListener('scroll',function(){ window.requestAnimationFrame(mark); },{passive:true});
+    ['pointerdown','touchstart','wheel'].forEach(function(ev){ rail.addEventListener(ev,pause,{passive:true}); });
+    setInterval(function(){ if(paused || document.hidden) return; if(rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 12){ rail.scrollTo({left:0, behavior:'smooth'}); } else { step(1); } }, 3600);
+    buildDots(); window.addEventListener('resize',buildDots);
+  });
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',railInit); else railInit();
+})();
+</script>
+</body></html>
