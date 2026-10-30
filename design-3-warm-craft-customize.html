@@ -262,6 +262,113 @@ footer.site h4{color:#fff;margin-bottom:10px}
  #toast{bottom:150px}
  #chatPanel{bottom:150px}
 }
+
+
+/* ===== PHOTO + ICON SYSTEM (v3.5) ===== */
+.ic{stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-4px}
+.ic.fill{fill:currentColor;stroke:none}
+.pimg img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease,opacity .45s ease}
+.card:hover .pimg img.ph{transform:scale(1.07)}
+.pimg img.art2{opacity:0}
+.card:hover .pimg img.art2{opacity:1}
+.hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+.ken img{animation:kenburns 9s ease-in-out infinite alternate}
+.galmain img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.galthumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.galthumbs button{overflow:hidden;padding:0}
+.studiostage img.ph,.teaserart img{width:100%;height:100%;object-fit:cover;display:block}
+.citem img{object-fit:cover}
+.tileimg{width:100%;height:120px;object-fit:cover;display:block;border-radius:calc(var(--radius) - 2px)}
+.cat-tile{gap:8px}
+.qvwrap .pimg img{width:100%;height:100%;object-fit:cover;display:block}
+#cpStage img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.chip .mini{width:26px;height:26px;object-fit:cover;border-radius:50%}
+.trustbar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+.trustbar .tb{border:2px solid var(--line);border-radius:var(--radius);padding:14px;display:flex;gap:10px;align-items:flex-start;background:#fff}
+.trustbar .tb .ic{color:var(--accent);margin-top:2px}
+.trustbar .tb b{display:block;font-size:14px}
+.trustbar .tb span{font-size:12px;color:var(--muted)}
+@media(max-width:720px){.trustbar{grid-template-columns:1fr 1fr}}
+.wishbtn .ic{vertical-align:0}
+#stars span .ic{vertical-align:0}
+.payopt .ic{color:var(--accent)}
+.kv .ic{color:var(--accent);vertical-align:-3px;margin-right:6px}
+button .ic{pointer-events:none}
+
+/* ===== ANIM POLISH LAYER (v3) - design identity unchanged ===== */
+@keyframes ripple{to{transform:scale(2.6);opacity:0}}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:ripple .55s ease-out forwards;pointer-events:none;z-index:5}
+.btn.alt .ripple,.chip .ripple,.swatch .ripple,.payopt .ripple{background:rgba(0,0,0,.16)}
+.chip,.card .add,.payopt,.swatch,.cat-tile{overflow:hidden;position:relative}
+.btn{transition:color .25s,border-color .25s,transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.chip{transition:all .18s}
+.chip:hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(0,0,0,.14)}
+.card{position:relative}
+.card:before{content:"";position:absolute;top:0;left:0;height:4px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .38s ease;z-index:3}
+.card:hover:before{transform:scaleX(1)}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.grid>.card,.rail>.card{animation:cardIn .5s ease backwards}
+.grid>.card:nth-child(2),.rail>.card:nth-child(2){animation-delay:.05s}
+.grid>.card:nth-child(3),.rail>.card:nth-child(3){animation-delay:.1s}
+.grid>.card:nth-child(4),.rail>.card:nth-child(4){animation-delay:.15s}
+.grid>.card:nth-child(5),.rail>.card:nth-child(5){animation-delay:.2s}
+.grid>.card:nth-child(6){animation-delay:.25s}
+.grid>.card:nth-child(7){animation-delay:.3s}
+.grid>.card:nth-child(8){animation-delay:.35s}
+.card .price{transition:color .2s,transform .2s;display:inline-block}
+.card:hover .price{color:var(--accent);transform:scale(1.05)}
+.wishbtn{position:relative;overflow:visible}
+@keyframes burst{to{transform:translate(var(--bx),var(--by)) scale(.35);opacity:0}}
+.burst-bit{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;background:var(--accent);border-radius:50%;pointer-events:none;animation:burst .55s ease-out forwards;z-index:6}
+#stars span{transition:transform .15s,text-shadow .15s;display:inline-block}
+#stars span:hover{transform:scale(1.3)}
+#stars span.lit{text-shadow:0 0 12px var(--accent)}
+.field input,.field select,.field textarea{transition:border-color .25s,box-shadow .25s}
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 6px 18px rgba(0,0,0,.13)}
+.checkwrap{position:relative}
+.checkwrap:before{content:"";position:absolute;left:50%;top:50%;width:118px;height:118px;margin:-59px 0 0 -59px;border-radius:50%;border:3px solid var(--accent);animation:ringPulse 1.7s ease-out infinite;pointer-events:none}
+@keyframes ringPulse{from{transform:scale(.78);opacity:.85}to{transform:scale(1.28);opacity:0}}
+@keyframes citemIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+#cartItems .citem{animation:citemIn .4s ease backwards}
+#cartItems .citem:nth-child(2){animation-delay:.06s}
+#cartItems .citem:nth-child(3){animation-delay:.12s}
+#cartItems .citem:nth-child(4){animation-delay:.18s}
+#cartItems .citem:nth-child(5){animation-delay:.24s}
+.qty button{transition:transform .12s}
+.qty button:active{transform:scale(.82)}
+.shipbar{position:relative;overflow:visible}
+.shipbar i{position:relative}
+.shipbar i:after{content:"";position:absolute;right:-3px;top:50%;transform:translateY(-50%);width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--accent);box-shadow:0 0 9px var(--accent);animation:pulse 1.3s infinite}
+@keyframes cartBounce{0%{transform:scale(1)}35%{transform:scale(1.18) rotate(-6deg)}70%{transform:scale(.93)}100%{transform:scale(1)}}
+.cart-bounce{animation:cartBounce .45s ease}
+.galthumbs button{transition:transform .2s,border-color .2s,box-shadow .2s}
+.galthumbs button:hover{transform:scale(1.08)}
+.galthumbs button.active{box-shadow:0 0 0 3px var(--accent)}
+h2.sec{position:relative;padding-bottom:12px}
+h2.sec:after{content:"";position:absolute;left:0;bottom:0;height:4px;width:72px;background:var(--accent);transform:scaleX(.25);transform-origin:left;transition:transform .8s ease}
+h2.sec.drawn:after{transform:scaleX(1)}
+.countnum.done{animation:pop .45s ease}
+.acc>button span{transition:transform .3s;display:inline-block}
+.acc.open>button span{transform:rotate(45deg)}
+@keyframes accIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.acc.open .abody{animation:accIn .35s ease}
+@keyframes toastIn{from{transform:translate(-50%,140%)}to{transform:translate(-50%,0)}}
+#toast.show{animation:toastIn .45s cubic-bezier(.2,1.35,.4,1)}
+@keyframes btIn{from{transform:scale(.5) rotate(-30deg);opacity:0}to{transform:none;opacity:1}}
+#backTop.show{animation:btIn .35s ease}
+#progressBar{box-shadow:0 0 10px var(--accent),0 0 3px var(--accent)}
+footer.site a{transition:transform .2s,color .2s}
+footer.site a:hover{transform:translateX(6px);color:#fff}
+.swatch{transition:all .18s}
+.swatch:hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(0,0,0,.14)}
+.payopt{transition:all .2s}
+.payopt:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.cat-tile{transition:all .25s}
+.iconbtn{transition:transform .15s,box-shadow .2s}
+.iconbtn:hover{box-shadow:0 5px 14px rgba(0,0,0,.15)}
+@media (prefers-reduced-motion: reduce){.ripple,.burst-bit{display:none!important}}
+
 @media (prefers-reduced-motion: reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 .step{clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%)} .cat-tile{clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 22px) 100%,0 100%)} .band{position:relative}
@@ -275,14 +382,14 @@ footer.site h4{color:#fff;margin-bottom:10px}
 <button class="iconbtn" id="hamburger" onclick="document.getElementById('mobileMenu').classList.contains('open')?closeMenu():openMenu()" aria-label="menu"><span class="lines"><i></i><i></i><i></i></span></button>
 <a class="logo" href="design-3-warm-craft-index.html"><span class="brandname">CustomNest</span><b>.</b></a>
 <nav class="main"><a href="design-3-warm-craft-index.html" class="">Home</a><a href="design-3-warm-craft-shop.html" class="">Shop</a><a href="design-3-warm-craft-customize.html" class="act">Customize Studio</a><a href="design-3-warm-craft-about.html" class="">About</a><a href="design-3-warm-craft-track.html" class="">Track Order</a><a href="design-3-warm-craft-faq.html" class="">FAQ</a><a href="design-3-warm-craft-contact.html" class="">Contact</a></nav>
-<div class="hicons"><button class="iconbtn tooltip" data-tip="Search" onclick="openSearch()" aria-label="search">⌕</button>
-<button class="iconbtn tooltip" data-tip="Wishlist" onclick="toast('Wishlist has ' + wishlist.size + ' item(s)')" aria-label="wishlist">♡<span class="badge wish-count">0</span></button>
+<div class="hicons"><button class="iconbtn tooltip" data-tip="Search" onclick="openSearch()" aria-label="search"><svg class="ic" width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg></button>
+<button class="iconbtn tooltip" data-tip="Wishlist" onclick="toast('Wishlist has ' + wishlist.size + ' item(s)')" aria-label="wishlist"><svg class="ic" width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5C7 16.5 3.5 13.2 3.5 9.3 3.5 6.4 5.7 4.5 8.2 4.5c1.5 0 3 .8 3.8 2 .8-1.2 2.3-2 3.8-2 2.5 0 4.7 1.9 4.7 4.8 0 3.9-3.5 7.2-8.5 11.2z"/></svg><span class="badge wish-count">0</span></button>
 <button class="iconbtn tooltip" data-tip="Cart" id="cartBtn" onclick="openCart()" aria-label="cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12h10.4l2-8H7"/></svg><span class="badge cart-count cart-badge">0</span></button></div></div>
 <div class="switcher"><b>COLOURS:</b><button class="swatch active" data-theme="Terracotta" onclick="setTheme('Terracotta',this)">Terracotta</button><button class="swatch " data-theme="Sage" onclick="setTheme('Sage',this)">Sage</button><button class="swatch " data-theme="Denim" onclick="setTheme('Denim',this)">Denim</button><button class="swatch " data-theme="Charcoal" onclick="setTheme('Charcoal',this)">Charcoal</button><small style="color:#666">Tap to re-skin this whole design</small></div></header>
 <main><div class="wrap custwrap"><h2 class="sec">Customize Studio</h2><p class="sub">This page is the heart of the store. Pick any product, type the name, choose a style and colour, and see the finished piece before you spend a rupee.</p>
 <div class="toolbar" id="custChips"></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:10px" class="herogrid">
-<div><div class="galmain" id="custStage"><span class="gart" id="custArt" style="display:flex;width:100%;height:100%;align-items:center;justify-content:center"></span><span class="previewText" id="custPreview">Your Name</span></div>
+<div><div class="galmain" id="custStage"><img class="ph" id="custImg" alt="Customize preview"><span class="previewText" id="custPreview">Your Name</span></div>
 <p style="margin-top:10px;color:#666;font-size:14px">Live preview stage. What you see is what gets made.</p></div>
 <div><div class="field"><label for="custProduct">Product</label><select id="custProduct" onchange="pickProduct(+this.value)"></select></div>
 <div class="field"><label for="custText">Name or text</label><input id="custText" maxlength="24" placeholder="e.g. Ahmed Khan" oninput="updCust()"></div>
@@ -295,7 +402,7 @@ footer.site h4{color:#fff;margin-bottom:10px}
 </div></div></div>
 <script>
 let cp = null, cq = 1, cIdx = 0;
-function paintStage(){ const st = document.getElementById("custStage"); st.style.background = bgFor(shade(cp.color, cIdx)); document.getElementById("custArt").innerHTML = art(cp.kind, shade(cp.color, cIdx)); updCust(); paintPrice(); }
+function paintStage(){ document.getElementById("custImg").src = galleryFor(cp)[cIdx]; updCust(); paintPrice(); }
 function paintPrice(){ const el = document.getElementById("custPrice"); el.textContent = money(cp.price * cq); el.style.animation = "none"; void el.offsetWidth; el.style.animation = "pop .3s"; }
 function updCust(){ const v = document.getElementById("custText").value.trim(); const f = document.getElementById("custFont").value; const pv = document.getElementById("custPreview");
   pv.textContent = v || "Your Name"; pv.style.fontFamily = f==="script" ? "cursive" : f==="bold" ? "Arial Black, sans-serif" : "inherit"; pv.style.letterSpacing = f==="caps" ? "3px" : "normal"; pv.style.textTransform = f==="caps" ? "uppercase" : "none"; }
@@ -314,11 +421,11 @@ window.init_customize = function(){ document.getElementById("custProduct").inner
 <div><h4>Contact (Placeholder)</h4><p>Phone: 03xx-xxxxxxx<br>Email: hello@example.com<br>City: To be confirmed</p><a href="design-3-warm-craft-contact.html">Contact page</a></div></div>
 <p style="text-align:center;margin-top:30px;color:#aaa;font-size:13px">Demo design for approval only. Prices and products are demo placeholders in PKR.</p></footer>
 <div class="backdrop" id="backdrop" onclick="closeAll()"></div>
-<aside id="mobileMenu"><div style="display:flex;justify-content:space-between;align-items:center"><b class="brandname" style="font-size:20px">CustomNest</b><button class="iconbtn" onclick="closeMenu()">×</button></div>
+<aside id="mobileMenu"><div style="display:flex;justify-content:space-between;align-items:center"><b class="brandname" style="font-size:20px">CustomNest</b><button class="iconbtn" onclick="closeMenu()" aria-label="close menu"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <a href="design-3-warm-craft-index.html">Home</a><a href="design-3-warm-craft-shop.html">Shop</a><a href="design-3-warm-craft-customize.html">Customize Studio</a><a href="design-3-warm-craft-about.html">About</a><a href="design-3-warm-craft-track.html">Track Order</a><a href="design-3-warm-craft-faq.html">FAQ</a><a href="design-3-warm-craft-contact.html">Contact</a>
 <a href="#" class="has-sub" onclick="this.classList.toggle('open');return false">Categories +</a><div class="subm"><a href="design-3-warm-craft-shop.html?cat=bottles">Temperature Bottles</a><a href="design-3-warm-craft-shop.html?cat=keychains">Keychains</a><a href="design-3-warm-craft-shop.html?cat=diaries">Diaries</a><a href="design-3-warm-craft-shop.html?cat=pens">Pens</a></div>
 <a href="design-3-warm-craft-checkout.html">Checkout</a></aside>
-<aside id="cartDrawer"><header><b style="font-size:19px">Your Cart</b><button class="iconbtn" onclick="closeCart()">×</button></header>
+<aside id="cartDrawer"><header><b style="font-size:19px">Your Cart</b><button class="iconbtn" onclick="closeCart()" aria-label="close cart"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
 <div style="padding:14px 18px 0"><div id="shipMsg" style="font-size:14.5px"></div><div class="shipbar"><i id="shipFill"></i></div></div>
 <div id="cartItems"></div>
 <div style="padding:16px 18px;border-top:2px solid var(--ink)"><div style="display:flex;justify-content:space-between"><span>Subtotal</span><b id="cartSubtotal">Rs. 0</b></div>
@@ -326,16 +433,16 @@ window.init_customize = function(){ document.getElementById("custProduct").inner
 <div style="display:flex;justify-content:space-between;font-size:19px;margin-top:6px"><span><b>Total</b></span><b id="cartGrand">Rs. 0</b></div>
 <a class="btn block" style="margin-top:14px" href="design-3-warm-craft-checkout.html">Checkout - COD</a></div></aside>
 <div id="quickModal"><div class="backdrop open" style="position:absolute" onclick="closeQuick()"></div><div class="box" id="quickBox"></div></div>
-<div id="searchOverlay"><div style="max-width:900px;margin:0 auto"><div style="display:flex;gap:10px;align-items:center"><input id="bigSearch" placeholder="Search bottles, diaries, pens..." oninput="doSearch(this.value)" style="flex:1;padding:16px;border:3px solid var(--ink);font-size:19px;border-radius:var(--radius)"><button class="iconbtn" onclick="closeSearch()" aria-label="close search">×</button></div>
+<div id="searchOverlay"><div style="max-width:900px;margin:0 auto"><div style="display:flex;gap:10px;align-items:center"><input id="bigSearch" placeholder="Search bottles, diaries, pens..." oninput="doSearch(this.value)" style="flex:1;padding:16px;border:3px solid var(--ink);font-size:19px;border-radius:var(--radius)"><button class="iconbtn" onclick="closeSearch()" aria-label="close search"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <p style="margin:14px 0;color:#666">Results update as you type.</p><div class="grid" id="searchResults"></div></div></div>
 <div id="recentStrip"></div>
 <div id="toast" role="status"></div>
-<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="back to top">↑</button>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="back to top"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14.5l6-6 6 6"/></svg></button>
 <button id="chatBtn" class="pulseonce" onclick="toggleChat()" aria-label="chat"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12z"/></svg></button>
-<div id="chatPanel"><header><span>Store Assistant (Demo)</span><button onclick="toggleChat()" style="background:none;border:none;color:#fff;font-size:20px">×</button></header>
+<div id="chatPanel"><header><span>Store Assistant (Demo)</span><button onclick="toggleChat()" style="background:none;border:none;color:#fff" aria-label="close chat"><svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
 <div id="chatMsgs"><div class="msg bot">Hello! I can help with prices, delivery, tracking and customization. Try asking about a bottle or the delivery charge.</div><div class="typing" id="typing"><i></i> <i></i> <i></i></div></div>
 <footer><input id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">Send</button></footer></div>
-<nav id="bottomNav"><a href="design-3-warm-craft-index.html" style="text-decoration:none"><button class=""><span>⌂</span>Home</button></a><a href="design-3-warm-craft-shop.html" style="text-decoration:none"><button class=""><span>▦</span>Shop</button></a><button id="bnCart" onclick="openCart()"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12h10.4l2-8H7"/></svg></span><span>Cart (<span class="cart-count">0</span>)</span></button><a href="design-3-warm-craft-track.html" style="text-decoration:none"><button class=""><span>◎</span>Track</button></a></nav>
+<nav id="bottomNav"><a href="design-3-warm-craft-index.html" style="text-decoration:none"><button class=""><span><svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5L12 4l8 7.5"/><path d="M6 10v9.5h12V10"/></svg></span>Home</button></a><a href="design-3-warm-craft-shop.html" style="text-decoration:none"><button class=""><span><svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13.5" y="4" width="7" height="7" rx="1"/><rect x="4" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/></svg></span>Shop</button></a><button id="bnCart" onclick="openCart()"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12h10.4l2-8H7"/></svg></span><span>Cart (<span class="cart-count">0</span>)</span></button><a href="design-3-warm-craft-track.html" style="text-decoration:none"><button class=""><span><svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 8L12 3.5 20.5 8v8L12 20.5 3.5 16z"/><path d="M3.5 8L12 12.5 20.5 8M12 12.5v8"/></svg></span>Track</button></a></nav>
 <script>const THEMES = {"Terracotta": ["#9c4a1f", "#2f5d50", "#fdf6ec", "#fdf6ec"], "Sage": ["#4c6444", "#b5762e", "#f5f7ef", "#f5f7ef"], "Denim": ["#2c4a73", "#c2703d", "#f2f5fa", "#f2f5fa"], "Charcoal": ["#2e2a26", "#a85d32", "#f8f4ee", "#f8f4ee"]};
 
 const BRAND_NAME = "CustomNest"; /* PLACEHOLDER BRAND - one place to rename */
@@ -343,7 +450,44 @@ const DESIGN_KEY = "d3";
 const K = (n)=> DESIGN_KEY + "_" + n;
 const FREE_SHIP = 5000, DELIVERY = 350;
 const PRODUCTS = [{"id": 1, "name": "Thermo Steel Bottle 500ml - Temperature Display", "cat": "bottles", "price": 2499, "old": 3199, "color": "#2f5d50", "kind": "bottle", "badge": "BEST SELLER", "desc": "Vacuum insulated steel bottle with LED temperature display on the lid. Your name is laser engraved on the body.", "specs": ["500ml capacity", "LED temperature display on lid", "Keeps drinks cold 24h / hot 12h", "Name engraving included"]}, {"id": 2, "name": "Thermo Steel Bottle 750ml - Matte Black", "cat": "bottles", "price": 2999, "old": 3799, "color": "#222222", "kind": "bottle", "badge": "NEW", "desc": "Large matte black temperature bottle for gym and office. Add any name or short text.", "specs": ["750ml capacity", "Matte anti-slip finish", "LED temperature display", "Custom text up to 20 characters"]}, {"id": 3, "name": "Kids Thermo Bottle 350ml - Pastel", "cat": "bottles", "price": 1899, "old": 2399, "color": "#7a9cc6", "kind": "bottle", "badge": "", "desc": "Small, light temperature bottle for school. Child name printed clearly so it never gets lost.", "specs": ["350ml capacity", "Leak-proof straw lid", "BPA-free inner steel", "Name print included"]}, {"id": 4, "name": "Thermo Bottle - Wood Finish Edition", "cat": "bottles", "price": 2799, "old": 0, "color": "#8a5a33", "kind": "bottle", "badge": "", "desc": "Wood-finish temperature bottle with a premium gift box. Ideal for corporate gifts.", "specs": ["500ml capacity", "Wood texture finish", "Gift box included", "Logo or name engraving"]}, {"id": 5, "name": "Thermo Bottle - Rose Pink", "cat": "bottles", "price": 2399, "old": 2899, "color": "#c4708a", "kind": "bottle", "badge": "", "desc": "Soft rose pink temperature bottle. A thoughtful customized gift for her.", "specs": ["500ml capacity", "LED temperature display", "Scratch resistant coat", "Name in script font option"]}, {"id": 6, "name": "Thermo Bottle - Navy Sport", "cat": "bottles", "price": 2599, "old": 0, "color": "#1d3557", "kind": "bottle", "badge": "", "desc": "Navy sport temperature bottle with carry loop. Built for travel and training days.", "specs": ["600ml capacity", "Carry loop handle", "LED temperature display", "Any name or number"]}, {"id": 7, "name": "Thermo Bottle - Silver Classic", "cat": "bottles", "price": 2299, "old": 2799, "color": "#9aa0a6", "kind": "bottle", "badge": "", "desc": "Classic brushed silver temperature bottle. Clean engraving, timeless look.", "specs": ["500ml capacity", "Brushed steel body", "LED temperature display", "Engraving included"]}, {"id": 8, "name": "Metal Keychain - Engraved Name Plate", "cat": "keychains", "price": 599, "old": 799, "color": "#8a6d3b", "kind": "keychain", "badge": "BEST SELLER", "desc": "Solid metal keychain with your name engraved on a polished plate.", "specs": ["Solid metal body", "Deep laser engraving", "Strong split ring", "Text up to 15 characters"]}, {"id": 9, "name": "Leather Keychain - Tan", "cat": "keychains", "price": 749, "old": 999, "color": "#a9743f", "kind": "keychain", "badge": "", "desc": "Genuine-feel leather strap keychain with stamped name. Ages beautifully.", "specs": ["Leather strap", "Stamped name", "Brass ring", "Gift pouch included"]}, {"id": 10, "name": "Photo Keychain - Double Side", "cat": "keychains", "price": 649, "old": 0, "color": "#5b4a8a", "kind": "keychain", "badge": "PHOTO", "desc": "Your photo printed on both sides, sealed in a clear acrylic keychain.", "specs": ["Double side photo print", "Clear acrylic body", "Water resistant seal", "Any photo you send"]}, {"id": 11, "name": "Wooden Keychain - Round", "cat": "keychains", "price": 449, "old": 599, "color": "#b08954", "kind": "keychain", "badge": "", "desc": "Light round wooden keychain with burned-in name text. Simple and warm.", "specs": ["Natural wood", "Burned-in text", "Lightweight", "Eco-friendly material"]}, {"id": 12, "name": "Car Keychain - Number Plate Style", "cat": "keychains", "price": 699, "old": 899, "color": "#333333", "kind": "keychain", "badge": "", "desc": "Mini number plate keychain with your car number and name. A driver favourite.", "specs": ["Plate style design", "Car number + name", "Metal body", "Scratch resistant print"]}, {"id": 13, "name": "Heart Keychain - Couple Set of 2", "cat": "keychains", "price": 999, "old": 1299, "color": "#b23a48", "kind": "keychain", "badge": "SET OF 2", "desc": "Two heart halves with two names. One for you, one for your person.", "specs": ["Set of 2 pieces", "Two names included", "Polished metal", "Gift box included"]}, {"id": 14, "name": "Initial Letter Keychain", "cat": "keychains", "price": 499, "old": 0, "color": "#2a6f97", "kind": "keychain", "badge": "", "desc": "Bold initial letter keychain in your chosen colour. Minimal and personal.", "specs": ["Any letter A-Z", "Colour options", "Acrylic body", "Name on back side"]}, {"id": 15, "name": "Leather Diary A5 - Name Embossed", "cat": "diaries", "price": 1499, "old": 1899, "color": "#6b3f2a", "kind": "diary", "badge": "BEST SELLER", "desc": "A5 leather diary with your name embossed on the cover. 200 ruled pages.", "specs": ["A5 size, 200 pages", "Name embossed on cover", "Ruled premium paper", "Elastic closure band"]}, {"id": 16, "name": "Hardcover Diary - Minimal Black", "cat": "diaries", "price": 1199, "old": 1499, "color": "#1f1f1f", "kind": "diary", "badge": "", "desc": "Clean black hardcover diary with foil name print. For work and planning.", "specs": ["A5 size, 192 pages", "Foil name print", "Lay-flat binding", "Ribbon bookmark"]}, {"id": 17, "name": "Diary + Pen Gift Set", "cat": "diaries", "price": 2199, "old": 2799, "color": "#7a1f2b", "kind": "diary", "badge": "GIFT SET", "desc": "Matching diary and pen set in a gift box. Both pieces carry the same name.", "specs": ["Diary + matching pen", "Name on both pieces", "Gift box included", "200 ruled pages"]}, {"id": 18, "name": "Floral Cover Diary - For Her", "cat": "diaries", "price": 1299, "old": 0, "color": "#c98aa6", "kind": "diary", "badge": "", "desc": "Soft floral cover diary with a printed name. Gentle colours, smooth paper.", "specs": ["A5 size, 180 pages", "Printed name on cover", "Smooth 80gsm paper", "Back pocket folder"]}, {"id": 19, "name": "Travel Journal - Kraft", "cat": "diaries", "price": 999, "old": 1299, "color": "#b08954", "kind": "diary", "badge": "", "desc": "Kraft travel journal with a stamped name. Blank pages for sketches and notes.", "specs": ["A5 size, 160 pages", "Blank pages", "Stamped name", "Leather strap closure"]}, {"id": 20, "name": "Executive Diary - Navy with Gold Name", "cat": "diaries", "price": 1699, "old": 2099, "color": "#1d3557", "kind": "diary", "badge": "", "desc": "Navy executive diary with gold foil name. A sharp desk companion.", "specs": ["A5 size, 220 pages", "Gold foil name", "Dated planner section", "Pen loop holder"]}, {"id": 21, "name": "Pocket Diary - Small Size", "cat": "diaries", "price": 799, "old": 999, "color": "#3f6b4f", "kind": "diary", "badge": "", "desc": "Pocket diary that fits in a bag or coat. Name printed on the front.", "specs": ["Pocket size, 144 pages", "Name printed", "Soft cover", "Elastic band"]}, {"id": 22, "name": "Metal Pen - Name Engraved", "cat": "pens", "price": 899, "old": 1199, "color": "#2b2b2b", "kind": "pen", "badge": "BEST SELLER", "desc": "Smooth metal ball pen with your name engraved along the barrel.", "specs": ["Metal body", "Laser engraved name", "Blue ink refill", "Gift sleeve included"]}, {"id": 23, "name": "Customized Pen - Gold Trim", "cat": "pens", "price": 1099, "old": 1399, "color": "#8a6d3b", "kind": "pen", "badge": "", "desc": "Black pen with gold trim and engraved name. Made for signatures that matter.", "specs": ["Gold trim finish", "Engraved name", "Smooth ball point", "Refillable"]}, {"id": 24, "name": "Customized Pen - Rose Gold", "cat": "pens", "price": 999, "old": 0, "color": "#b76e79", "kind": "pen", "badge": "NEW", "desc": "Rose gold customized pen with script engraving. Elegant and giftable.", "specs": ["Rose gold body", "Script engraving option", "Blue ink", "Velvet pouch included"]}, {"id": 25, "name": "Pen + Keychain Combo", "cat": "pens", "price": 1299, "old": 1699, "color": "#355070", "kind": "pen", "badge": "COMBO", "desc": "Engraved pen with a matching name keychain in one box. Same name, two keepsakes.", "specs": ["Pen + keychain", "Same name on both", "Gift box included", "Metal bodies"]}, {"id": 26, "name": "Wooden Pen - Handcrafted", "cat": "pens", "price": 1199, "old": 1499, "color": "#8a5a33", "kind": "pen", "badge": "", "desc": "Handcrafted wooden pen with burned-in name. No two pieces are exactly alike.", "specs": ["Natural wood body", "Burned-in name", "Balanced weight", "Refillable"]}, {"id": 27, "name": "Teacher Pen - Thank You Edition", "cat": "pens", "price": 849, "old": 1099, "color": "#6a4c93", "kind": "pen", "badge": "", "desc": "A pen engraved with a thank-you line and the teacher name. Ready to gift.", "specs": ["Thank-you engraving", "Teacher name included", "Metal body", "Gift card included"]}, {"id": 28, "name": "Corporate Pen Set of 5", "cat": "pens", "price": 3499, "old": 4499, "color": "#444444", "kind": "pen", "badge": "SET OF 5", "desc": "Five engraved pens with your company name. For teams, events and client gifts.", "specs": ["Set of 5 pens", "Company name engraving", "Uniform finish", "Bulk gift boxes"]}];
+
+const ICON_PATHS = {
+cart:'<circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12.2a1.5 1.5 0 0 0 1.5 1.2h7.9a1.5 1.5 0 0 0 1.5-1.2L20 7H6"/>',
+search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/>',
+heart:'<path d="M12 20.5C7 16.5 3.5 13.2 3.5 9.3 3.5 6.4 5.7 4.5 8.2 4.5c1.5 0 3 .8 3.8 2 .8-1.2 2.3-2 3.8-2 2.5 0 4.7 1.9 4.7 4.8 0 3.9-3.5 7.2-8.5 11.2z"/>',
+heartF:'<path d="M12 20.5C7 16.5 3.5 13.2 3.5 9.3 3.5 6.4 5.7 4.5 8.2 4.5c1.5 0 3 .8 3.8 2 .8-1.2 2.3-2 3.8-2 2.5 0 4.7 1.9 4.7 4.8 0 3.9-3.5 7.2-8.5 11.2z"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.6 4.2-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/>',
+close:'<path d="M6 6l12 12M18 6L6 18"/>',
+chevD:'<path d="M6 9.5l6 6 6-6"/>', chevL:'<path d="M14.5 6L8.5 12l6 6"/>', chevR:'<path d="M9.5 6l6 6-6 6"/>', chevU:'<path d="M6 14.5l6-6 6 6"/>',
+truck:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/>',
+shield:'<path d="M12 3l7 2.8v5.4c0 4.6-3 7.9-7 9.8-4-1.9-7-5.2-7-9.8V5.8z"/><path d="M9.2 11.8l2 2 3.6-3.8"/>',
+cash:'<rect x="3" y="6.5" width="18" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 9.8v.01M17.5 14.2v.01"/>',
+pen:'<path d="M4 20l4.5-1L20 7.5a2.1 2.1 0 0 0-3-3L5.5 16z"/><path d="M14.5 6l3.5 3.5"/>',
+gift:'<rect x="4" y="10" width="16" height="4"/><path d="M6 14v6.5h12V14M12 10v10.5M12 10c-4.5 0-5.5-1.6-5.5-3C6.5 5.2 8 4.5 9.2 4.9c1.6.5 2.3 2.6 2.8 5.1zm0 0c4.5 0 5.5-1.6 5.5-3 0-1.8-1.5-2.5-2.7-2.1-1.6.5-2.3 2.6-2.8 5.1z"/>',
+phone:'<path d="M5 4h4l1.5 4.5L8 10a12 12 0 0 0 6 6l1.5-2.5L20 15v4a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 6.2 2 2 0 0 1 5 4z"/>',
+whatsapp:'<path d="M12 3.8a8.2 8.2 0 0 0-7 12.9L3.8 20.5l3.9-1.1A8.2 8.2 0 1 0 12 3.8z"/><path d="M9 8.8c.6 2.5 3.7 5.6 6.2 6.2l1-1.5-2.5-1.2-1 .8a7.6 7.6 0 0 1-2.4-2.4l.8-1L10.9 7.2z"/>',
+mail:'<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 7l8 6 8-6"/>',
+check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+clock:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+box:'<path d="M3.5 8L12 3.5 20.5 8v8L12 20.5 3.5 16z"/><path d="M3.5 8L12 12.5 20.5 8M12 12.5v8"/>',
+sparkle:'<path d="M12 4l1.7 5.3L19 11l-5.3 1.7L12 18l-1.7-5.3L5 11l5.3-1.7z"/><path d="M19 4.5v2.4M17.8 5.7h2.4"/>',
+filter:'<path d="M4 5.5h16l-6.2 7.3v5L10.2 20v-7.2z"/>',
+grid:'<rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13.5" y="4" width="7" height="7" rx="1"/><rect x="4" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/>',
+home:'<path d="M4 11.5L12 4l8 7.5"/><path d="M6 10v9.5h12V10"/>',
+chat:'<path d="M20 4.5H4a1.5 1.5 0 0 0-1.5 1.5v9A1.5 1.5 0 0 0 4 16.5h3.5V20l5-3.5H20a1.5 1.5 0 0 0 1.5-1.5V6A1.5 1.5 0 0 0 20 4.5z"/>',
+copy:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/>',
+trash:'<path d="M4.5 6.5h15M9.5 6V4.5A1.5 1.5 0 0 1 11 3h2a1.5 1.5 0 0 1 1.5 1.5V6M6.5 6.5l1 13a1.5 1.5 0 0 0 1.5 1.4h6A1.5 1.5 0 0 0 16.5 19.5l1-13"/>',
+plus:'<path d="M12 5.5v13M5.5 12h13"/>', minus:'<path d="M5.5 12h13"/>',
+arrowR:'<path d="M4.5 12h15M13.5 6l6 6-6 6"/>',
+star:'<path d="M12 3.6l2.5 5.2 5.7.7-4.2 4 1.1 5.6L12 16.4l-5.1 2.7 1.1-5.6-4.2-4 5.7-.7z"/>',
+eye:'<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'
+};
+function icon(n, size){ size = size || 20; const fill = (n === "star" || n === "heartF"); return `<svg class="ic${fill ? " fill" : ""}" width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS[n] || ""}</svg>`; }
+const IMG_FILE = {1:"img-p1.jpg",2:"img-p2.jpg",3:"img-p3.jpg",4:"img-p4.jpg",5:"img-p5.jpg",6:"img-p6.jpg",7:"img-p7.jpg",8:"img-p8.jpg",9:"img-p9.jpg",10:"img-p10.jpg",11:"img-p11.jpg",12:"img-p12.jpg",13:"img-p13.jpg",14:"img-p14.jpg",15:"img-p15.jpg",16:"img-p16.jpg",17:"img-p17.jpg",18:"img-p18.jpg",19:"img-p19.jpg",20:"img-p20.jpg",21:"img-p21.jpg",22:"img-p22.jpg",23:"img-p23.jpg",24:"img-p24.jpg",25:"img-p25.jpg",26:"img-p26.jpg",27:"img-p27.jpg",28:"img-p28.jpg"};
+const CAT_ALT = {bottles:["img-p2.jpg","img-p6.jpg"], keychains:["img-p9.jpg","img-p13.jpg"], diaries:["img-p16.jpg","img-p20.jpg"], pens:["img-p23.jpg","img-p26.jpg"]};
+function galleryFor(p){ const alts = (CAT_ALT[p.cat] || []).filter(x => x !== p.img); return [p.img].concat(alts).slice(0, 3); }
 const CATS = {bottles:"Temperature Bottles", keychains:"Keychains", diaries:"Diaries", pens:"Pens & Customized Pens"};
+PRODUCTS.forEach(p => { p.img = IMG_FILE[p.id]; });
 function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
 function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
 function money(n){ return "Rs. " + n.toLocaleString("en-PK"); }
@@ -357,26 +501,29 @@ function art(kind, color){
   if(kind==="diary") return `<svg viewBox="0 0 100 130" aria-hidden="true"><rect x="20" y="12" width="62" height="106" rx="4" fill="${color}"/><rect x="20" y="12" width="9" height="106" fill="rgba(0,0,0,.28)"/><text x="56" y="66" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">DIARY</text></svg>`;
   return `<svg viewBox="0 0 100 130" aria-hidden="true"><g transform="rotate(24 50 65)"><rect x="44" y="10" width="12" height="86" fill="${color}"/><polygon points="44,96 56,96 50,118" fill="#d9b36c"/><rect x="44" y="10" width="12" height="12" fill="#d9b36c"/></g><text x="50" y="126" text-anchor="middle" font-size="8" fill="#666" font-weight="bold">CUSTOM PEN</text></svg>`;
 }
-const CART_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 3h2l2.4 12h10.4l2-8H7"/></svg>`;
-const CHAT_SVG = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12z"/></svg>`;
+const CART_SVG = `<svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS.cart}</svg>`;
+const CHAT_SVG = `<svg class="ic" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">${ICON_PATHS.chat}</svg>`;
 function shade(hex, i){ const sh=[hex,"#444444","#8a6d3b"]; return i===0?hex:sh[i]; }
 function bgFor(c){ return c + "22"; }
 function prodURL(p){ return "design-3-warm-craft-product.html?id=" + p.id; }
+function heartHTML(on){ return icon(on ? "heartF" : "heart", 21); }
 function cardHTML(p){
   const save = p.old ? Math.round((1-p.price/p.old)*100) : 0;
-  return `<article class="card"><div class="pimg" style="background:${bgFor(p.color)}" onclick="location.href='${prodURL(p)}'">${p.badge?`<span class="cbadge">${p.badge}</span>`:""}
-    <span class="art1">${art(p.kind,p.color)}</span><span class="art2">${art(p.kind, shade(p.color,1))}</span>
+  const g = galleryFor(p);
+  return `<article class="card"><div class="pimg" onclick="location.href='${prodURL(p)}'">${p.badge?`<span class="cbadge">${p.badge}</span>`:""}
+    <img class="ph" src="${p.img}" alt="${p.name}" loading="lazy"><img class="ph art2" src="${g[1] || p.img}" alt="" loading="lazy">
     <button class="quick" onclick="event.stopPropagation();quickView(${p.id})">Quick View</button></div>
    <div class="cbody"><span class="cat">${CATS[p.cat]}</span><h3><a href="${prodURL(p)}" style="text-decoration:none">${p.name}</a></h3>
     <div><span class="price">${money(p.price)}${p.old?`<s>${money(p.old)}</s>`:""}</span> ${save?`<span class="save">Save ${save}%</span>`:""}</div>
-    <button class="wishbtn ${wishlist.has(p.id)?"on":""}" onclick="toggleWish(${p.id},this)" aria-label="wishlist">${wishlist.has(p.id)?"♥":"♡"}</button>
+    <button class="wishbtn ${wishlist.has(p.id)?"on":""}" onclick="toggleWish(${p.id},this)" aria-label="wishlist">${heartHTML(wishlist.has(p.id))}</button>
     <button class="add" onclick="addToCart(${p.id},1,'',this)">Add to Cart</button></div></article>`;
 }
-function toggleWish(id, el){ if(wishlist.has(id)){ wishlist.delete(id); el.textContent="♡"; el.classList.remove("on"); toast("Removed from wishlist"); } else { wishlist.add(id); el.textContent="♥"; el.classList.add("on"); toast("Saved to wishlist"); } safeSet(K("wish"), JSON.stringify([...wishlist])); updateCounts(); }
+function burstAt(el){ if(!el) return; for(let i=0;i<7;i++){ const b = document.createElement("span"); b.className = "burst-bit"; const ang = (Math.PI*2*i)/7 + Math.random()*.4; const dist = 22 + Math.random()*14; b.style.setProperty("--bx", Math.cos(ang)*dist + "px"); b.style.setProperty("--by", Math.sin(ang)*dist + "px"); el.appendChild(b); setTimeout(()=>b.remove(), 600); } }
+function toggleWish(id, el){ if(wishlist.has(id)){ wishlist.delete(id); el.innerHTML = heartHTML(false); el.classList.remove("on"); toast("Removed from wishlist"); } else { wishlist.add(id); el.innerHTML = heartHTML(true); el.classList.add("on"); burstAt(el); toast("Saved to wishlist"); } safeSet(K("wish"), JSON.stringify([...wishlist])); updateCounts(); }
 function quickView(id){
   const p = PRODUCTS.find(x=>x.id===id);
-  document.getElementById("quickBox").innerHTML = `<button onclick="closeQuick()" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:24px" aria-label="close">×</button>
-   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div style="width:130px;height:130px;flex:none;display:flex;align-items:center;justify-content:center;background:${bgFor(p.color)};border-radius:var(--radius)">${art(p.kind,p.color)}</div>
+  document.getElementById("quickBox").innerHTML = `<button onclick="closeQuick()" style="position:absolute;top:10px;right:12px;background:none;border:none" aria-label="close">${icon("close",24)}</button>
+   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div style="width:150px;height:150px;flex:none;border-radius:var(--radius);overflow:hidden"><img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block"></div>
    <div style="flex:1;min-width:200px"><span class="cat">${CATS[p.cat]}</span><h3 style="margin:6px 0">${p.name}</h3><div class="price">${money(p.price)}</div><p style="color:#555;margin-top:6px">${p.desc}</p></div></div>
    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap"><a class="btn" style="flex:1" href="${prodURL(p)}">Customize Now <span class="arr">→</span></a><button class="btn alt" onclick="addToCart(${p.id},1,'',this)">Add to Cart</button></div>`;
   document.getElementById("quickModal").classList.add("open"); document.getElementById("backdrop").classList.add("open");
@@ -386,10 +533,10 @@ function flyToCart(fromEl, p){
   const targetEl = window.innerWidth <= 900 ? document.getElementById("bnCart") : document.getElementById("cartBtn");
   if(!fromEl || !targetEl) return;
   const r = fromEl.getBoundingClientRect(); const t = targetEl.getBoundingClientRect();
-  const f = document.createElement("div"); f.className="fly"; f.innerHTML = art(p.kind,p.color);
+  const f = document.createElement("div"); f.className="fly"; f.innerHTML = `<img src="${p.img}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:8px">`;
   f.style.left = Math.max(0,r.left + r.width/2 - 37) + "px"; f.style.top = Math.max(0,r.top) + "px"; document.body.appendChild(f);
   requestAnimationFrame(()=>{ f.style.left=(t.left+4)+"px"; f.style.top=(t.top+4)+"px"; f.style.width="34px"; f.style.height="34px"; f.style.opacity=".3"; });
-  setTimeout(()=>{ f.remove(); document.querySelectorAll(".cart-badge").forEach(b=>{ b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }); }, 770);
+  setTimeout(()=>{ f.remove(); document.querySelectorAll(".cart-badge").forEach(b=>{ b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); }); const cb = document.getElementById("cartBtn"); if(cb){ cb.classList.remove("cart-bounce"); void cb.offsetWidth; cb.classList.add("cart-bounce"); } const bn = document.getElementById("bnCart"); if(bn){ bn.classList.remove("cart-bounce"); void bn.offsetWidth; bn.classList.add("cart-bounce"); } }, 770);
 }
 function addToCart(id, qty, custom, fromEl){
   const p = PRODUCTS.find(x=>x.id===id);
@@ -405,10 +552,10 @@ function updateCounts(){ document.querySelectorAll(".cart-count").forEach(e=>e.t
 function renderCart(highlight){
   const box = document.getElementById("cartItems"); if(!box) return;
   if(!cart.length){ box.innerHTML = `<p style="text-align:center;padding:30px 8px;color:#555">Your cart is empty.<br><br><a class="btn" href="design-3-warm-craft-shop.html" onclick="closeCart()">Start Shopping</a></p>`; }
-  else box.innerHTML = cart.map((c,i)=>{ const p=PRODUCTS.find(x=>x.id===c.id); return `<div class="citem ${highlight&&i===cart.length-1?"flash":""}"><div class="thumb" style="background:${bgFor(p.color)}">${art(p.kind,p.color)}</div>
+  else box.innerHTML = cart.map((c,i)=>{ const p=PRODUCTS.find(x=>x.id===c.id); return `<div class="citem ${highlight&&i===cart.length-1?"flash":""}"><img class="thumb" src="${p.img}" alt="${p.name}">
     <div style="flex:1"><b style="font-size:14.5px">${p.name}</b>${c.custom?`<div style="font-size:13px;color:var(--accent);font-weight:700">Custom text: "${c.custom.replace(/</g,"&lt;")}"</div>`:""}
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px"><span class="qty"><button onclick="cartQty(${i},-1)">−</button><output>${c.qty}</output><button onclick="cartQty(${i},1)">+</button></span><b>${money(p.price*c.qty)}</b></div>
-    <button onclick="removeItem(${i},this)" style="background:none;border:none;color:#b23a48;font-weight:700;margin-top:6px;padding:4px 0">Remove</button></div></div>`; }).join("");
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:7px"><span class="qty"><button onclick="cartQty(${i},-1)" aria-label="less">${icon("minus",15)}</button><output>${c.qty}</output><button onclick="cartQty(${i},1)" aria-label="more">${icon("plus",15)}</button></span><b>${money(p.price*c.qty)}</b></div>
+    <button onclick="removeItem(${i},this)" style="background:none;border:none;color:#b23a48;font-weight:700;margin-top:6px;padding:4px 0;display:inline-flex;align-items:center;gap:5px">${icon("trash",15)} Remove</button></div></div>`; }).join("");
   const t = cartTotal(); const pct = Math.min(100, Math.round(t/FREE_SHIP*100));
   const sm = document.getElementById("shipMsg"); if(sm) sm.innerHTML = t>=FREE_SHIP ? `<b style="color:var(--accent)">You unlocked FREE delivery.</b>` : `Add <b>${money(FREE_SHIP-t)}</b> more for FREE delivery`;
   const sf = document.getElementById("shipFill"); if(sf) sf.style.width = pct + "%";
@@ -478,10 +625,12 @@ window.addEventListener("scroll", ()=>{
 }, {passive:true});
 function initCounters(){
   const io = new IntersectionObserver(es=>{ es.forEach(en=>{ if(!en.isIntersecting) return; const el = en.target; io.unobserve(el);
-    if(el.dataset.count){ const end = +el.dataset.count; let n = 0; const iv = setInterval(()=>{ n += Math.ceil(end/28); if(n>=end){ n=end; clearInterval(iv);} el.textContent = n.toLocaleString(); }, 28); }
+    if(el.dataset.count){ const end = +el.dataset.count; let n = 0; const iv = setInterval(()=>{ n += Math.ceil(end/28); if(n>=end){ n=end; clearInterval(iv); el.classList.add("done"); } el.textContent = n.toLocaleString(); }, 28); }
     if(el.classList.contains("ringfg")){ el.style.strokeDashoffset = String(314 - 314 * (+el.dataset.pct || 75) / 100); }
   }); }, {threshold:.35});
   document.querySelectorAll("[data-count], .ringfg").forEach(el=>io.observe(el));
+  const io2 = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("drawn"); io2.unobserve(en.target); } }); }, {threshold:.25});
+  document.querySelectorAll("h2.sec").forEach(el=>io2.observe(el));
 }
 /* hero slider + rotating words + typewriter + countdown */
 let heroTimer = null;
@@ -512,10 +661,21 @@ function initTilt(){
   const mag = document.getElementById("magnetBtn");
   if(mag){ document.addEventListener("mousemove", (e)=>{ const r = mag.getBoundingClientRect(); const dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2); if(Math.abs(dx) < 130 && Math.abs(dy) < 90) mag.style.transform = `translate(${dx*.16}px, ${dy*.16}px)`; else mag.style.transform = ""; }); }
 }
+/* click ripple (polish layer) */
+document.addEventListener("pointerdown", (e)=>{
+  const t = e.target.closest ? e.target.closest(".btn,.chip,.card .add,.payopt,.swatch,.cat-tile") : null; if(!t) return;
+  const r = t.getBoundingClientRect(); if(!r.width) return;
+  const s = document.createElement("span"); s.className = "ripple";
+  const size = Math.max(r.width, r.height) * 1.1;
+  s.style.width = s.style.height = size + "px";
+  s.style.left = (e.clientX - r.left - size/2) + "px"; s.style.top = (e.clientY - r.top - size/2) + "px";
+  t.appendChild(s); setTimeout(()=>s.remove(), 620);
+});
 /* generic init */
 document.addEventListener("DOMContentLoaded", ()=>{
   document.querySelectorAll(".brandname").forEach(e=>e.textContent = BRAND_NAME);
-  document.querySelectorAll("[data-art]").forEach(el=>{ el.innerHTML = art(el.dataset.art, el.dataset.color || "#555555"); });
+  const KIND_IMG = {bottle:"img-p1.jpg", keychain:"img-p8.jpg", diary:"img-p15.jpg", pen:"img-p22.jpg"};
+  document.querySelectorAll("[data-kindimg]").forEach(el=>{ el.src = KIND_IMG[el.dataset.kindimg] || ""; });
   const heroArt = document.getElementById("heroArt"); if(heroArt) heroArt.innerHTML = art("bottle","#2f5d50") + art("diary","#6b3f2a") + art("pen","#222222");
   updateCounts(); renderCart(false); initCounters(); initHero(); initTilt();
   const t = safeGet(K("theme")); if(t && THEMES[t]) setTheme(t, document.querySelector(`.swatch[data-theme="${t}"]`));
